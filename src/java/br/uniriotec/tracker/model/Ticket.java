@@ -17,6 +17,7 @@ public class Ticket {
     private String description;
     private int status;
     private int userKey;
+    private String[] comments;
     
     public Ticket() {
         
@@ -86,5 +87,13 @@ public class Ticket {
 
     public void setUserKey(int userKey) {
         this.userKey = userKey;
+    }
+    
+    public String[] getComments() {
+        return comments;
+    }
+
+    public void setComments(String[] comments) {
+        this.comments = comments;
     }
 }
