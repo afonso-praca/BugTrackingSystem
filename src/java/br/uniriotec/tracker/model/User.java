@@ -5,7 +5,6 @@
 package br.uniriotec.tracker.model;
 
 /**
- *
  * @author afonso
  */
 public class User {
@@ -19,8 +18,21 @@ public class User {
     private boolean isActive;
     private boolean forcePasswordReset;
     private boolean shouldChangePassword;
+
+    public User(int id, int type, String name, String lastName, String email, String password, boolean isActive, boolean forcePasswordReset, boolean shouldChangePassword) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.isActive = isActive;
+        this.forcePasswordReset = forcePasswordReset;
+        this.shouldChangePassword = shouldChangePassword;
+    }
     
     public User() {
+        
     }
 
     public int getId() {
