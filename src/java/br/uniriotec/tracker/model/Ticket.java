@@ -17,6 +17,10 @@ public class Ticket {
     private String description;
     private int status;
     private int userKey;
+    
+    public Ticket() {
+        
+    }
 
     public Ticket(int id, String title, int systemKey, int componentKey, String description, int status, int userKey) {
         this.id = id;
@@ -26,10 +30,6 @@ public class Ticket {
         this.description = description;
         this.status = status;
         this.userKey = userKey;
-    }
-
-    public Ticket() {
-        
     }
 
     public int getId() {

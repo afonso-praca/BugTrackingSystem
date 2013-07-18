@@ -18,6 +18,10 @@ public class User {
     private boolean isActive;
     private boolean forcePasswordReset;
     private boolean shouldChangePassword;
+    
+    public User() {
+        
+    }
 
     public User(int id, int type, String name, String lastName, String email, String password, boolean isActive, boolean forcePasswordReset, boolean shouldChangePassword) {
         this.id = id;
@@ -29,10 +33,6 @@ public class User {
         this.isActive = isActive;
         this.forcePasswordReset = forcePasswordReset;
         this.shouldChangePassword = shouldChangePassword;
-    }
-    
-    public User() {
-        
     }
 
     public int getId() {
