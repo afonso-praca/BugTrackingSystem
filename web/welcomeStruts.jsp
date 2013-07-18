@@ -20,7 +20,7 @@
             </div>
         </logic:notPresent>
         
-        <h3><bean:message key="welcome.heading"/></h3>
+        <h1><bean:message key="welcome.heading"/></h1>
         <p><bean:message key="welcome.message"/></p>
         
     </body>
