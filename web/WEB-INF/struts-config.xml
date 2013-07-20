@@ -8,6 +8,7 @@
 <struts-config>
     <form-beans>
         <form-bean name="LoginForm" type="com.myapp.struts.LoginForm"/>
+        <form-bean name="NewUserForm" type="com.myapp.struts.NewUserForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -23,6 +24,11 @@
         <action name="LoginForm" path="/login" scope="request" type="com.myapp.struts.LoginAction" validate="false">
             <forward name="failure" path="/login.jsp"/>
             <forward name="success" path="/WEB-INF/success.jsp"/>
+        </action>
+        
+        <action name="NewUserForm" path="/newUser" scope="request" type="com.myapp.struts.NewUserAction" validate="false">
+            <forward name="failure" path="/newUser.jsp"/>
+            <forward name="success" path="/newUserSuccess.jsp"/>
         </action>
         
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>

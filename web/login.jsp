@@ -9,9 +9,10 @@
 
         <jsp:include page="header.jsp" />
 
-        <html:form action="/login">
+        
             <div class="row">
                 
+            <html:form action="/login">
             <div class="well span6 pull-left">
                 
                 <form class="form-horizontal">
@@ -31,23 +32,25 @@
                     </div>
                     <div class="control-group">
                       <div class="controls">
-                        <html:submit value="Sign In" />
+                        <html:submit styleClass="btn btn-large btn-primary" value="Sign In" />
                         <span><bean:write name="LoginForm" property="error" filter="false"/></span>
                       </div>
                     </div>
                 </form>
-                
-              
+                      
             </div>
+             </html:form>
                         
-                        <div class="span5 pull-right">
+            <div class="span5 pull-right">
 		
 		<p class="pull-left">Welcome guy, don't have an account yet?</p><br/><br/>
-                <button class="btn btn-danger btn-large pull-left">Creat an account</button><br/><br/>  
+                <a href="newUser.jsp">
+                    <button class="btn btn-danger btn-large pull-left">Creat an account</button><br/><br/>  
+                </a>
                 <div><img src="img/bug.jpg" ></div>
                             
-                        </div>
+             </div>
+                
             </div>
-        </html:form>
         
         <jsp:include page="footer.jsp" />
