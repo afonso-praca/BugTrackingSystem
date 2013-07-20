@@ -18,6 +18,19 @@
                     <h4>Create an Account</h4>
                     
                     <div class="control-group">
+                      <label class="control-label">Name</label>
+                      <div class="controls">
+                        <html:text property="name" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label class="control-label">Last Name</label>
+                      <div class="controls">
+                        <html:text property="lastName" />
+                      </div>
+                    </div>
+                    
+                    <div class="control-group">
                       <label class="control-label">Email</label>
                       <div class="controls">
                         <html:text property="email" />
@@ -29,18 +42,14 @@
                         <html:text property="password" />
                       </div>
                     </div>
-                      <div class="control-group">
-                      <label class="control-label">Name</label>
+                      
+                    <div class="control-group">
+                      <label class="control-label">Password Confirm</label>
                       <div class="controls">
-                        <html:text property="name" />
+                        <html:text property="confirmedPassword" />
                       </div>
                     </div>
-                      <div class="control-group">
-                      <label class="control-label">Last Name</label>
-                      <div class="controls">
-                        <html:text property="lastName" />
-                      </div>
-                    </div>
+                      
                     <div class="control-group">
                       <div class="controls">
                         <html:submit styleClass="btn btn-large btn-primary" value="Sign Up" />

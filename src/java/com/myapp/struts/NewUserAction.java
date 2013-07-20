@@ -35,13 +35,16 @@ public class NewUserAction extends org.apache.struts.action.Action {
         String password = formBean.getPassword();
         String name = formBean.getName();
         String lastName = formBean.getLastName();
+        String confirmedPassword = formBean.getConfirmedPassword();
 
         // perform validation
         if ((email == null) || // name parameter does not exist
                 password == null || // email parameter does not exist
+                confirmedPassword == null ||
                 lastName == null || // email parameter does not exist
                 name == null || // email parameter does not exist
                 password.equals("") || // name parameter is empty
+                !password.equals(confirmedPassword) || // name parameter is empty
                 email.indexOf("@") == -1) {   // email lacks '@'
 
             formBean.setError();

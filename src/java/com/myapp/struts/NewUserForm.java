@@ -19,9 +19,19 @@ public class NewUserForm extends org.apache.struts.action.ActionForm {
     private String lastName;
     private String email;
     private String password;
+    private String confirmedPassword;
     
     // error message
     private String error;
+
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
+    }
+    
 
     public String getName() {
         return name;
@@ -86,9 +96,12 @@ public class NewUserForm extends org.apache.struts.action.ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getEmail()== null || getName() == null || getLastName() == null || getPassword().length() < 1) {
+        if (getEmail()== null || getName() == null || getConfirmedPassword() == null || getLastName() == null || getPassword().length() < 1) {
             errors.add("email", new ActionMessage("error.email.required"));
             // TODO: add 'error.email.required' key to your resources
+        }
+        if (!getEmail().equals(getConfirmedPassword())) {
+            errors.add("email", new ActionMessage("error.email.required"));
         }
         return errors;
     }
