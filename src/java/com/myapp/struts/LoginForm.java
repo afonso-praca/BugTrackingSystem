@@ -4,13 +4,7 @@
  */
 package com.myapp.struts;
 
-import br.uniriotec.tracker.dao.DAO;
-import br.uniriotec.tracker.dao.DAOFactory;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
@@ -22,8 +16,8 @@ import org.apache.struts.action.ActionMessage;
  */
 public class LoginForm extends org.apache.struts.action.ActionForm {
     
-    private String name;
     private String email;
+    private String password;
     
     // error message
     private String error;
@@ -37,26 +31,26 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
                 "<span style='color:red'>Please provide valid entries for both fields</span>";
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
      * @return
      */
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
     /**
      * @param string
      */
-    public void setName(String string) {
-        name = string;
+    public void setEmail(String string) {
+        email = string;
     }
 
     /**
@@ -76,9 +70,9 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getName() == null || getName().length() < 1) {
-            errors.add("name", new ActionMessage("error.name.required"));
-            // TODO: add 'error.name.required' key to your resources
+        if (getEmail()== null || getPassword().length() < 1) {
+            errors.add("email", new ActionMessage("error.email.required"));
+            // TODO: add 'error.email.required' key to your resources
         }
         return errors;
     }

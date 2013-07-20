@@ -21,8 +21,8 @@
 
         <p>You have successfully logged in.</p>
 
-        <p>Your name is: <bean:write name="LoginForm" property="name" />.</p>
+        <p>Your user is: <bean:write name="LoginForm" property="email" />.</p>
 
-        <p>Your email address is: <bean:write name="LoginForm" property="email" />.</p>
+        <p>Your password address is: <bean:write name="LoginForm" property="password" />.</p>
     </body>
 </html>
