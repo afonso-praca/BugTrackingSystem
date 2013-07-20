@@ -1,0 +1,35 @@
+/* 
+    Document   : style
+    Created on : Jul 20, 2013, 2:51:04 PM
+    Author     : afonso
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+
+body {
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+    
+
+/* menu */
+.app-menu {
+    background-color: #f4f4f4;
+    padding: 6px 0 6px;
+}
+
+.app-menu .current-app {
+    margin: 10px 15px 0 0;
+}
+
+.app-menu .nav, .app-menu .nav-pills {
+    margin-bottom: 0px;
+}
+
+.app-menu .current-app {
+    font-size: 15px;
+}
