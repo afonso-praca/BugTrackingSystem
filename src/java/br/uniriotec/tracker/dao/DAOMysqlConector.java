@@ -6,6 +6,8 @@ package br.uniriotec.tracker.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -13,14 +15,14 @@ import java.sql.DriverManager;
  */
 public class DAOMysqlConector {
     
-    public static String dbUrl = "jdbc:mysql://localhost:3306/SocialMediaMonitorDB";
+    public static String dbUrl = "jdbc:mysql://localhost:3306/ticketManager";
     public static Connection conn = null;
     
     @SuppressWarnings("UseSpecificCatch")
     protected static void abrirConexao() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection(dbUrl, "root", "beta!@#");
+            conn = DriverManager.getConnection(dbUrl, "root", "123456");
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -33,4 +35,6 @@ public class DAOMysqlConector {
             System.err.println(e);
         }
     }
+    
+    
 }

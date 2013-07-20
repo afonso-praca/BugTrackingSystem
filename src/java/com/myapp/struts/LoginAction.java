@@ -46,6 +46,7 @@ public class LoginAction extends org.apache.struts.action.Action {
             System.out.println("I'll try to connect DB - Login Action");
             DAO dao = DAOFactory.getDAO();
             dao.gravarNoBD();
+            
         } catch (SQLException ex) {
              System.out.println(ex);
         }
@@ -55,6 +56,7 @@ public class LoginAction extends org.apache.struts.action.Action {
         String email = formBean.getEmail();
         String password = formBean.getPassword();
 
+        
         // perform validation
         if ((email == null) || // name parameter does not exist
                 password == null || // email parameter does not exist
@@ -63,6 +65,11 @@ public class LoginAction extends org.apache.struts.action.Action {
 
             formBean.setError();
             return mapping.findForward(FAILURE);
+        }
+        else{
+            
+            DAO dao = DAOFactory.getDAO();
+            dao.verificaUsuario(email, password);
         }
 
         return mapping.findForward(SUCCESS);
