@@ -32,7 +32,7 @@
                     </div>
                     <div class="control-group">
                       <div class="controls">
-                        <html:submit value="Sign In" />
+                        <html:submit styleClass="btn btn-large btn-primary" value="Sign In" />
                         <span><bean:write name="LoginForm" property="error" filter="false"/></span>
                       </div>
                     </div>

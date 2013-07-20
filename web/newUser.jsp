@@ -43,7 +43,7 @@
                     </div>
                     <div class="control-group">
                       <div class="controls">
-                        <html:submit value="Sign Up" />
+                        <html:submit styleClass="btn btn-large btn-primary" value="Sign Up" />
                         <span><bean:write name="NewUserForm" property="error" filter="false"/></span>
                       </div>
                     </div>
