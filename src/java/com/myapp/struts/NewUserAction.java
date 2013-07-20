@@ -6,7 +6,6 @@ package com.myapp.struts;
 
 import br.uniriotec.tracker.dao.DAO;
 import br.uniriotec.tracker.dao.DAOFactory;
-import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -49,6 +48,9 @@ public class NewUserAction extends org.apache.struts.action.Action {
 
             formBean.setError();
             return mapping.findForward(FAILURE);
+        } else {
+            DAO dao = DAOFactory.getDAO();
+            dao.createUser(email, password, name, lastName);
         }
 
         return mapping.findForward(SUCCESS);

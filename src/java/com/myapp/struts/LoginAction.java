@@ -6,9 +6,6 @@ package com.myapp.struts;
 
 import br.uniriotec.tracker.dao.DAO;
 import br.uniriotec.tracker.dao.DAOFactory;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -41,20 +38,14 @@ public class LoginAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
-         try {
-            System.out.println("I'll try to connect DB - Login Action");
-            DAO dao = DAOFactory.getDAO();
-            dao.gravarNoBD();
-            
-        } catch (SQLException ex) {
-             System.out.println(ex);
-        }
 
         // extract user data
         LoginForm formBean = (LoginForm) form;
         String email = formBean.getEmail();
         String password = formBean.getPassword();
+        
+        //
+        boolean userExists = false;
 
         
         // perform validation
@@ -67,12 +58,15 @@ public class LoginAction extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         }
         else{
-            
             DAO dao = DAOFactory.getDAO();
-            dao.verificaUsuario(email, password);
+            userExists = dao.verificaUsuario(email, password);
+            
+            if (userExists){
+                return mapping.findForward(SUCCESS);
+            } else {
+                formBean.setError();
+                return mapping.findForward(FAILURE);
+            }
         }
-
-        return mapping.findForward(SUCCESS);
     }
-    
 }

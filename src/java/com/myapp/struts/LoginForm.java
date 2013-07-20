@@ -27,8 +27,7 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
     }
 
     public void setError() {
-        this.error =
-                "<span style='color:red'>Please provide valid entries for both fields</span>";
+        this.error = "<span style='color:red'>Invalid user or password</span>";
     }
 
     public String getPassword() {

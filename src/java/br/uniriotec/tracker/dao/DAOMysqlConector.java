@@ -6,8 +6,6 @@ package br.uniriotec.tracker.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  *
@@ -22,7 +20,7 @@ public class DAOMysqlConector {
     protected static void abrirConexao() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection(dbUrl, "root", "123456");
+            conn = DriverManager.getConnection(dbUrl, "root", "beta!@#");
         } catch (Exception e) {
             System.err.println(e);
         }

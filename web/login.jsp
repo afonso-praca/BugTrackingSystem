@@ -35,6 +35,9 @@
                         <html:submit styleClass="btn btn-large btn-primary" value="Sign In" />
                         <span><bean:write name="LoginForm" property="error" filter="false"/></span>
                       </div>
+                      <div style="margin-top: 20px;" class="contol-group">
+                          <a href="resetPassword.jsp"><span>I don't know my password</span></a>
+                      </div>
                     </div>
                 </form>
                       
