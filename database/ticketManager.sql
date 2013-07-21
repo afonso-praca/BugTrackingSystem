@@ -147,13 +147,17 @@ DROP TABLE IF EXISTS `USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USER` (
+  `idUser` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `lastName` varchar(45) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(12) NOT NULL,
-  `token` varchar(8) DEFAULT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5 COMMENT='Tabela de usuarios do sistema';
+  `type` varchar(45) NOT NULL,
+  `isActive` binary(1) NOT NULL,
+  `forcePassReset` binary(1) NOT NULL,
+  `shouldChangePassword` binary(1) NOT NULL,
+  PRIMARY KEY (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=big5 COMMENT='Tabela de usuarios do sistema';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
