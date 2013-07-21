@@ -6,11 +6,16 @@ package com.myapp.struts;
 
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
+import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -26,6 +31,8 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+         
+       
 
          
         // extract user data
@@ -39,7 +46,20 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
             formBean.setError();
             return mapping.findForward(FAILURE);
         } else {
+            
+            // envia email
+            Properties props = new Properties();
+            props.put("mail.host", "gmail.com");
+            props.put("mail.user", "afonsoinfo");
+            Session mailSession = Session.getDefaultInstance(props, null);
+            
+            MimeMessage msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress("afonsoinfo@gmail.com", "Afonso Info"));
+            msg.addRecipient(Message.RecipientType.TO, new InternetAddress("afonsoinfo@gmail.com", "Jeff Hanson"));
+            msg.setSubject("This is the email message subject");
+            msg.setText("This is the email message body");
            
+            Transport.send(msg);
         }
 
         return mapping.findForward(SUCCESS);
