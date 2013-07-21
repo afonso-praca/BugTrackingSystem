@@ -20,7 +20,7 @@ public class DAOMysqlConector {
     protected static void abrirConexao() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection(dbUrl, "root", "beta!@#");
+            conn = DriverManager.getConnection(dbUrl, "root", "123456");
         } catch (Exception e) {
             System.err.println(e);
         }

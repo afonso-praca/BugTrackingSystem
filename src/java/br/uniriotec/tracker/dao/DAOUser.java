@@ -16,6 +16,10 @@ import java.sql.Statement;
  * @author afonso
  */
 public class DAOUser extends DAOMysqlConector {
+    
+    public final static String TYPE_USUER = "USR";
+    public final static String TYPE_OPERATOR = "OPR";
+    public final static String TYPE_ADNISTRATOR = "ADM";
 
     // VERIFICA EXISTENCIA DO USUARIO E SENHA
     public boolean verificaUsuario(String email, String password) {
@@ -79,11 +83,16 @@ public class DAOUser extends DAOMysqlConector {
         sqlVerifyUser += " WHERE email = " + "'" + email + "'";
         
         String sqlCreateUser = "";
-        sqlCreateUser += "INSERT INTO ticketManager.USER (name, lastName, email, password)";
-        sqlCreateUser += "VALUES (" + "'" + name + "','" 
+        sqlCreateUser += "INSERT INTO ticketManager.USER (name, lastName, email,type, password,isActive,forcePassReset,shouldChangePassword)";
+        sqlCreateUser += "VALUES ("+"'" 
+                + name + "','" 
                 + lastName + "','" 
                 + email + "','"
-                + password + "')";
+                + TYPE_USUER + "','"
+                + password +  "','" 
+                + 0 + "','"
+                + 1 + "','"
+                + 1 + "')";
         
         try {
             Statement st = conn.createStatement();
@@ -94,6 +103,7 @@ public class DAOUser extends DAOMysqlConector {
             }
             else {
                 System.out.println("NAO EXISTE USUARIO, LETS CREATE IT");
+                System.out.println(sqlCreateUser);
                 Statement stUser = conn.createStatement();
                 int rsUser = stUser.executeUpdate(sqlCreateUser);
                 if(rsUser == 0){
