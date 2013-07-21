@@ -6,6 +6,8 @@ package com.myapp.struts;
 
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
+import java.util.Properties;
+import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -20,7 +22,7 @@ import javax.mail.MessagingException;
  *
  * @author afonso
  */
-public class ResetPasswordAction extends org.apache.struts.action.Action {
+public class ForgotPasswordAction extends org.apache.struts.action.Action {
     
      /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -35,11 +37,8 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
 
          
         // extract user data
-        ResetPasswordForm formBean = (ResetPasswordForm) form;
+        ForgotPasswordForm formBean = (ForgotPasswordForm) form;
         String email = formBean.getEmail();
-        String password = formBean.getPassword();
-        String confimPassword = formBean.getConfirmPassword();
-        String token = formBean.getToken();
 
         // perform validation
         if ((email == null) || // name parameter does not exist
@@ -51,10 +50,10 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
             
             // gera o token
             
-            System.out.println("Lets change password!");
-            
-//            DAOUser dao = DAOFactory.getDAOUser();
-//            dao.createAccessToken(email, token);
+            String token = UUID.randomUUID().toString().substring(0, 8);
+            System.out.println(token);
+            DAOUser dao = DAOFactory.getDAOUser();
+            dao.createAccessToken(email, token);
             
             // envia email
             /*Properties props = new Properties();

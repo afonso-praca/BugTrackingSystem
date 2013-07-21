@@ -8,6 +8,7 @@ import static br.uniriotec.tracker.dao.DAOMysqlConector.abrirConexao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.conn;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.fecharConexao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -46,7 +47,7 @@ public class DAOUser extends DAOMysqlConector {
     }
     
     // CREATE ACCESS TOKEN
-    public boolean createAccessToken(String email, String token){
+    public boolean createAccessToken(String email, String token) throws SQLException{
         abrirConexao();
         
         String sql = "";
@@ -54,8 +55,18 @@ public class DAOUser extends DAOMysqlConector {
         sql += " WHERE email = " + "'" + email + "'";
         System.out.println(sql);
         
+        Statement st = conn.createStatement();
+        int rs = st.executeUpdate(sql);
+        System.out.println(rs);
+        
         fecharConexao();
-        return false;
+        
+        if(rs == 1){
+            System.out.println("Gravou Token");
+            return true;
+        } else {
+            return false;
+        }
     }
     
     // CREATE NEW USER
