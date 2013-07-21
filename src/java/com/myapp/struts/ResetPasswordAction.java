@@ -7,6 +7,7 @@ package com.myapp.struts;
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
 import java.util.Properties;
+import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -47,8 +48,15 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         } else {
             
+            // gera o token
+            
+            String token = UUID.randomUUID().toString().substring(0, 8);
+            System.out.println(token);
+            DAOUser dao = DAOFactory.getDAOUser();
+            dao.createAccessToken(email, token);
+            
             // envia email
-            Properties props = new Properties();
+            /*Properties props = new Properties();
             props.put("mail.host", "gmail.com");
             props.put("mail.user", "afonsoinfo");
             Session mailSession = Session.getDefaultInstance(props, null);
@@ -59,7 +67,7 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
             msg.setSubject("This is the email message subject");
             msg.setText("This is the email message body");
            
-            Transport.send(msg);
+            Transport.send(msg);*/
         }
 
         return mapping.findForward(SUCCESS);

@@ -17,14 +17,14 @@ import java.sql.Statement;
 public class DAOUser extends DAOMysqlConector {
 
     // VERIFICA EXISTENCIA DO USUARIO E SENHA
-    public boolean verificaUsuario(String login, String senha) {
+    public boolean verificaUsuario(String email, String password) {
 
         abrirConexao();
 
         String sql = "";
         sql += "SELECT * FROM ticketManager.USER";
-        sql += " WHERE email = " + "'" + login + "'";
-        sql += " AND password = " + "'" + senha + "'";
+        sql += " WHERE email = " + "'" + email + "'";
+        sql += " AND password = " + "'" + password + "'";
         
         try {
             Statement st = conn.createStatement();
@@ -40,6 +40,19 @@ public class DAOUser extends DAOMysqlConector {
         } catch (Exception e) {
             System.err.println(e);
         }
+        
+        fecharConexao();
+        return false;
+    }
+    
+    // CREATE ACCESS TOKEN
+    public boolean createAccessToken(String email, String token){
+        abrirConexao();
+        
+        String sql = "";
+        sql += "UPDATE ticketManager.USER SET token = " + "'" + token + "'";
+        sql += " WHERE email = " + "'" + email + "'";
+        System.out.println(sql);
         
         fecharConexao();
         return false;
