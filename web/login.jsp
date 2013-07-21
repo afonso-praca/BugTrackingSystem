@@ -19,15 +19,15 @@
                     <h4>Sign In</h4>
                     
                     <div class="control-group">
-                      <label class="control-label" for="inputEmail">Email</label>
+                      <label class="control-label">Email</label>
                       <div class="controls">
                         <html:text property="email" />
                       </div>
                     </div>
                     <div class="control-group">
-                      <label class="control-label" for="inputPassword">Password</label>
+                      <label class="control-label">Password</label>
                       <div class="controls">
-                        <html:text property="password" />
+                        <html:password property="password" />
                       </div>
                     </div>
                     <div class="control-group">

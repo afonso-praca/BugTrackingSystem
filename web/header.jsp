@@ -25,7 +25,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="">Bug Tracking System</a>
+          <a class="brand" href="/BugTrackingSystem">Bug Tracking System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active">

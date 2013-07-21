@@ -9,6 +9,7 @@
     <form-beans>
         <form-bean name="LoginForm" type="com.myapp.struts.LoginForm"/>
         <form-bean name="NewUserForm" type="com.myapp.struts.NewUserForm"/>
+        <form-bean name="ResetPasswordForm" type="com.myapp.struts.ResetPasswordForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -29,6 +30,11 @@
         <action name="NewUserForm" path="/newUser" scope="request" type="com.myapp.struts.NewUserAction" validate="false">
             <forward name="failure" path="/newUser.jsp"/>
             <forward name="success" path="/newUserSuccess.jsp"/>
+        </action>
+        
+        <action name="ResetPasswordForm" path="/resetPassword" scope="request" type="com.myapp.struts.ResetPasswordAction" validate="false">
+            <forward name="failure" path="/resetPassword.jsp"/>
+            <forward name="success" path="/resetPasswordSuccess.jsp"/>
         </action>
         
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>

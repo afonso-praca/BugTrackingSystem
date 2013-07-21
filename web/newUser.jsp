@@ -39,14 +39,14 @@
                     <div class="control-group">
                       <label class="control-label">Password</label>
                       <div class="controls">
-                        <html:text property="password" />
+                        <html:password property="password" />
                       </div>
                     </div>
                       
                     <div class="control-group">
                       <label class="control-label">Password Confirm</label>
                       <div class="controls">
-                        <html:text property="confirmedPassword" />
+                        <html:password property="confirmedPassword" />
                       </div>
                     </div>
                       

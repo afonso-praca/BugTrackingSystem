@@ -16,7 +16,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author afonso
  */
-public class NewUserAction extends org.apache.struts.action.Action {
+public class ResetPasswordAction extends org.apache.struts.action.Action {
     
      /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -26,30 +26,20 @@ public class NewUserAction extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+
          
         // extract user data
-        NewUserForm formBean = (NewUserForm) form;
+        ResetPasswordForm formBean = (ResetPasswordForm) form;
         String email = formBean.getEmail();
-        String password = formBean.getPassword();
-        String name = formBean.getName();
-        String lastName = formBean.getLastName();
-        String confirmedPassword = formBean.getConfirmedPassword();
 
         // perform validation
         if ((email == null) || // name parameter does not exist
-                password == null || // email parameter does not exist
-                confirmedPassword == null ||
-                lastName == null || // email parameter does not exist
-                name == null || // email parameter does not exist
-                password.equals("") || // name parameter is empty
-                !password.equals(confirmedPassword) || // name parameter is empty
                 email.indexOf("@") == -1) {   // email lacks '@'
 
             formBean.setError();
             return mapping.findForward(FAILURE);
         } else {
-            DAOUser dao = DAOFactory.getDAOUser();
-            dao.createUser(email, password, name, lastName);
+           
         }
 
         return mapping.findForward(SUCCESS);

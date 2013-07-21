@@ -9,15 +9,13 @@ import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
-
 /**
  *
  * @author afonso
  */
-public class LoginForm extends org.apache.struts.action.ActionForm {
+public class ResetPasswordForm extends org.apache.struts.action.ActionForm {
     
     private String email;
-    private String password;
     
     // error message
     private String error;
@@ -27,15 +25,8 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
     }
 
     public void setError() {
-        this.error = "<span style='color:red'>Invalid user or password</span>";
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.error =
+                "<span style='color:red'>Please provide valid entries for all fields</span>";
     }
 
     /**
@@ -55,7 +46,7 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
     /**
      *
      */
-    public LoginForm() {
+    public ResetPasswordForm() {
         super();
     }
 
@@ -68,11 +59,10 @@ public class LoginForm extends org.apache.struts.action.ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getEmail()== null || getPassword().length() < 1) {
+        if (getEmail()== null) {
             errors.add("email", new ActionMessage("error.email.required"));
             // TODO: add 'error.email.required' key to your resources
         }
         return errors;
     }
-    
 }

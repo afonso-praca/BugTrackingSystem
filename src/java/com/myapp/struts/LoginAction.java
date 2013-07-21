@@ -4,7 +4,7 @@
  */
 package com.myapp.struts;
 
-import br.uniriotec.tracker.dao.DAO;
+import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +22,6 @@ public class LoginAction extends org.apache.struts.action.Action {
     private static final String SUCCESS = "success";
     private final static String FAILURE = "failure";
     
-    
-
     /**
      * This is the action called from the Struts framework.
      * @param mapping The ActionMapping used to select this instance.
@@ -44,10 +42,9 @@ public class LoginAction extends org.apache.struts.action.Action {
         String email = formBean.getEmail();
         String password = formBean.getPassword();
         
-        //
-        boolean userExists = false;
+        // control var
+        boolean userExists;
 
-        
         // perform validation
         if ((email == null) || // name parameter does not exist
                 password == null || // email parameter does not exist
@@ -58,7 +55,7 @@ public class LoginAction extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         }
         else{
-            DAO dao = DAOFactory.getDAO();
+            DAOUser dao = DAOFactory.getDAOUser();
             userExists = dao.verificaUsuario(email, password);
             
             if (userExists){

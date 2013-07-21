@@ -7,30 +7,14 @@ package br.uniriotec.tracker.dao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.abrirConexao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.conn;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.fecharConexao;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  *
  * @author afonso
  */
-public class DAO extends DAOMysqlConector {
-
-    public void gravarNoBD() throws SQLException {
-
-        abrirConexao();
-
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM USER");
-        //stmt.setMaxRows(100);
-        ResultSet resultSet = stmt.executeQuery();
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString("name"));
-        }
-
-        fecharConexao();
-    }
+public class DAOUser extends DAOMysqlConector {
 
     // VERIFICA EXISTENCIA DO USUARIO E SENHA
     public boolean verificaUsuario(String login, String senha) {
@@ -42,10 +26,7 @@ public class DAO extends DAOMysqlConector {
         sql += " WHERE email = " + "'" + login + "'";
         sql += " AND password = " + "'" + senha + "'";
         
-        System.out.println(sql);
-        
         try {
-            
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
@@ -69,9 +50,9 @@ public class DAO extends DAOMysqlConector {
 
         abrirConexao();
 
-        String sql = "";
-        sql += "SELECT * FROM ticketManager.USER";
-        sql += " WHERE email = " + "'" + email + "'";
+        String sqlVerifyUser = "";
+        sqlVerifyUser += "SELECT * FROM ticketManager.USER";
+        sqlVerifyUser += " WHERE email = " + "'" + email + "'";
         
         String sqlCreateUser = "";
         sqlCreateUser += "INSERT INTO ticketManager.USER (name, lastName, email, password)";
@@ -81,17 +62,14 @@ public class DAO extends DAOMysqlConector {
                 + password + "')";
         
         try {
-            
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            
+            ResultSet rs = st.executeQuery(sqlVerifyUser);
             if(rs.next()){
                 System.out.println("EXISTE USUARIO");
                 return false;
             }
             else {
                 System.out.println("NAO EXISTE USUARIO, LETS CREATE IT");
-                
                 Statement stUser = conn.createStatement();
                 int rsUser = stUser.executeUpdate(sqlCreateUser);
                 if(rsUser == 0){

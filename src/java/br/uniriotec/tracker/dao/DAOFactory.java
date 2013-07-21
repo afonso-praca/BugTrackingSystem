@@ -10,11 +10,11 @@ package br.uniriotec.tracker.dao;
  */
 public class DAOFactory {
     
-    private static DAO dao;
+    private static DAOUser dao;
     
-    public static DAO getDAO(){
+    public static DAOUser getDAOUser(){
         if (dao == null)
-            dao = new DAO();
+            dao = new DAOUser();
         
         return dao;
     }
