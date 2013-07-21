@@ -2,60 +2,32 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.myapp.struts;
+package br.uniriotec.tracker.struts;
 
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+
 /**
  *
  * @author afonso
  */
-public class NewUserForm extends org.apache.struts.action.ActionForm {
+public class LoginForm extends org.apache.struts.action.ActionForm {
     
-    private String name;
-    private String lastName;
     private String email;
     private String password;
-    private String confirmedPassword;
     
     // error message
     private String error;
-
-    public String getConfirmedPassword() {
-        return confirmedPassword;
-    }
-
-    public void setConfirmedPassword(String confirmedPassword) {
-        this.confirmedPassword = confirmedPassword;
-    }
-    
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getError() {
         return error;
     }
 
     public void setError() {
-        this.error =
-                "<span style='color:red'>Please provide valid entries for all fields</span>";
+        this.error = "<span style='color:red'>Invalid user or password</span>";
     }
 
     public String getPassword() {
@@ -83,7 +55,7 @@ public class NewUserForm extends org.apache.struts.action.ActionForm {
     /**
      *
      */
-    public NewUserForm() {
+    public LoginForm() {
         super();
     }
 
@@ -96,13 +68,11 @@ public class NewUserForm extends org.apache.struts.action.ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getEmail()== null || getName() == null || getConfirmedPassword() == null || getLastName() == null || getPassword().length() < 1) {
+        if (getEmail()== null || getPassword().length() < 1) {
             errors.add("email", new ActionMessage("error.email.required"));
             // TODO: add 'error.email.required' key to your resources
         }
-        if (!getEmail().equals(getConfirmedPassword())) {
-            errors.add("email", new ActionMessage("error.email.required"));
-        }
         return errors;
     }
+    
 }

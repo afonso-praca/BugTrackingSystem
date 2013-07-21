@@ -2,27 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.myapp.struts;
+package br.uniriotec.tracker.struts;
 
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
-import java.util.Properties;
-import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.mail.MessagingException;
-
 /**
  *
  * @author afonso
  */
-public class ForgotPasswordAction extends org.apache.struts.action.Action {
+public class NewUserAction extends org.apache.struts.action.Action {
     
      /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -33,41 +27,29 @@ public class ForgotPasswordAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
          
-       
-
-         
         // extract user data
-        ForgotPasswordForm formBean = (ForgotPasswordForm) form;
+        NewUserForm formBean = (NewUserForm) form;
         String email = formBean.getEmail();
+        String password = formBean.getPassword();
+        String name = formBean.getName();
+        String lastName = formBean.getLastName();
+        String confirmedPassword = formBean.getConfirmedPassword();
 
         // perform validation
         if ((email == null) || // name parameter does not exist
+                password == null || // email parameter does not exist
+                confirmedPassword == null ||
+                lastName == null || // email parameter does not exist
+                name == null || // email parameter does not exist
+                password.equals("") || // name parameter is empty
+                !password.equals(confirmedPassword) || // name parameter is empty
                 email.indexOf("@") == -1) {   // email lacks '@'
 
             formBean.setError();
             return mapping.findForward(FAILURE);
         } else {
-            
-            // gera o token
-            
-            String token = UUID.randomUUID().toString().substring(0, 8);
-            System.out.println(token);
             DAOUser dao = DAOFactory.getDAOUser();
-            dao.createAccessToken(email, token);
-            
-            // envia email
-            /*Properties props = new Properties();
-            props.put("mail.host", "gmail.com");
-            props.put("mail.user", "afonsoinfo");
-            Session mailSession = Session.getDefaultInstance(props, null);
-            
-            MimeMessage msg = new MimeMessage(mailSession);
-            msg.setFrom(new InternetAddress("afonsoinfo@gmail.com", "Afonso Info"));
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress("afonsoinfo@gmail.com", "Jeff Hanson"));
-            msg.setSubject("This is the email message subject");
-            msg.setText("This is the email message body");
-           
-            Transport.send(msg);*/
+            dao.createUser(email, password, name, lastName);
         }
 
         return mapping.findForward(SUCCESS);
