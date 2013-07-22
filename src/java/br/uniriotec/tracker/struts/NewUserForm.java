@@ -55,7 +55,7 @@ public class NewUserForm extends org.apache.struts.action.ActionForm {
 
     public void setError() {
         this.error =
-                "<span style='color:red'>Please provide valid entries for all fields</span>";
+                "<span style='color:red'>You miss some fields, or email already exists on our DB</span>";
     }
 
     public String getPassword() {

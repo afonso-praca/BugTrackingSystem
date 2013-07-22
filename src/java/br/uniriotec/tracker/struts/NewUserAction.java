@@ -49,10 +49,12 @@ public class NewUserAction extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         } else {
             DAOUser dao = DAOFactory.getDAOUser();
-            dao.createUser(email, password, name, lastName);
+            if (dao.createUser(email, password, name, lastName) == true){
+                return mapping.findForward(SUCCESS);
+            } else {
+                formBean.setError();
+                return mapping.findForward(FAILURE);
+            }
         }
-
-        return mapping.findForward(SUCCESS);
     }
-    
 }
