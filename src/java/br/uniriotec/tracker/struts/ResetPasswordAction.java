@@ -31,30 +31,39 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
          
-       
-
-         
         // extract user data
         ResetPasswordForm formBean = (ResetPasswordForm) form;
         String email = formBean.getEmail();
         String password = formBean.getPassword();
         String confimPassword = formBean.getConfirmPassword();
         String token = formBean.getToken();
-
+        
         // perform validation
-        if ((email == null) || // name parameter does not exist
+        if (email == null || // name parameter does not exist
+                token == null || // name parameter does not exist
+                password == null || // email parameter does not exist
+                confimPassword == null ||
+                password.equals("") || // name parameter is empty
+                !password.equals(confimPassword) || // name parameter is empty
                 email.indexOf("@") == -1) {   // email lacks '@'
 
             formBean.setError();
             return mapping.findForward(FAILURE);
+            
         } else {
             
             // gera o token
-            
             System.out.println("Lets change password!");
             
-//            DAOUser dao = DAOFactory.getDAOUser();
-//            dao.createAccessToken(email, token);
+           DAOUser dao = DAOFactory.getDAOUser();
+           if (dao.resetPassword(email, token, password, confimPassword) == true) {
+               System.out.println("Resetou");
+               return mapping.findForward(SUCCESS);
+           } else {
+               formBean.setError();
+               System.out.println(" Não Resetou");
+               return mapping.findForward(FAILURE);
+           }
             
             // envia email
             /*Properties props = new Properties();
@@ -70,8 +79,6 @@ public class ResetPasswordAction extends org.apache.struts.action.Action {
            
             Transport.send(msg);*/
         }
-
-        return mapping.findForward(SUCCESS);
     }
     
 }

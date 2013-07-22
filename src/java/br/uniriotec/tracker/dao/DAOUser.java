@@ -175,50 +175,96 @@ public class DAOUser extends DAOMysqlConector {
 
     // CHANGE USER PASSWORD
     public boolean chnageUserPassword(String email, String oldPass, String newPass, String confirmPass) {
+        
+        if(newPass == null ? confirmPass == null : newPass.equals(confirmPass)){
+             abrirConexao();
 
-           if(newPass == confirmPass){
-                abrirConexao();
+             String sqlVerifyUserPass = "";
+             sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
+             sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
+             sqlVerifyUserPass += " AND password = " + "'" + oldPass + "'";
 
-                String sqlVerifyUserPass = "";
-                sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
-                sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
-                sqlVerifyUserPass += " AND password = " + "'" + oldPass + "'";
+             String sqlChangePass = "";
+             sqlChangePass += "INSERT INTO ticketManager.USER (password)";
+             sqlChangePass += "VALUES (" + "'"
+                     + newPass + "')";
 
-                String sqlChangePass = "";
-                sqlChangePass += "INSERT INTO ticketManager.USER (password)";
-                sqlChangePass += "VALUES (" + "'"
-                        + newPass + "')";
+             try {
+                 Statement st = conn.createStatement();
+                 ResultSet rs = st.executeQuery(sqlVerifyUserPass);
+                 if (rs.next()) {
+                     System.out.println("EXISTE USUARIO COM A SENHA ESPECIFICADA PARA QUE SEJA TROCADA");
 
-                try {
-                    Statement st = conn.createStatement();
-                    ResultSet rs = st.executeQuery(sqlVerifyUserPass);
-                    if (rs.next()) {
-                        System.out.println("EXISTE USUARIO COM A SENHA ESPECIFICADA PARA QUE SEJA TROCADA");
+                     Statement stUser = conn.createStatement();
+                     int rsUser = stUser.executeUpdate(sqlChangePass);
 
-                        Statement stUser = conn.createStatement();
-                        int rsUser = stUser.executeUpdate(sqlChangePass);
+                     if (rsUser == 0) {
+                         System.out.println("Gravou a nova senha");
+                         return true;
+                     } else {
+                         return false;
+                     }
+                 } else {
+                     System.out.println("NAO EXISTE USUARIO COM ESTA SENHA PARA QUE A MESMA SEJA INFORMADA");
+                     return false;
+                 }
+             } catch (Exception e) {
+                 System.err.println(e);
+             }
 
-                        if (rsUser == 0) {
-                            System.out.println("Gravou a nova senha");
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    } else {
-                        System.out.println("NAO EXISTE USUARIO COM ESTA SENHA PARA QUE A MESMA SEJA INFORMADA");
-                        return false;
-                    }
-                } catch (Exception e) {
-                    System.err.println(e);
-                }
+             fecharConexao();
+             return false;
+        }else{
+            System.out.println("A NOVA SENHA E A SENHA DE CONFIRMAÇÃO NAO SÃO IGUAIS.");
 
-                fecharConexao();
-                return false;
-           }else{
-               System.out.println("A NOVA SENHA E A SENHA DE CONFIRMAÇÃO NAO SÃO IGUAIS.");
+            return false;
+        }
+    }
+    
+    // CHANGE USER PASSWORD
+    public boolean resetPassword(String email, String token, String newPass, String confirmPass) {
+        
+        if(newPass == null ? confirmPass == null : newPass.equals(confirmPass)){
+            abrirConexao();
 
-               return false;
-           }
-               
+             String sqlVerifyUserPass = "";
+             sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
+             sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
+             sqlVerifyUserPass += " AND token = " + "'" + token + "'";
+             
+            String sqlChangePass = "";
+            sqlChangePass += "UPDATE ticketManager.USER SET password = " + "'" + newPass + "'";
+            sqlChangePass += " WHERE email = " + "'" + email + "'";
+            System.out.println(sqlChangePass);
+
+             try {
+                 Statement st = conn.createStatement();
+                 ResultSet rs = st.executeQuery(sqlVerifyUserPass);
+                 if (rs.next()) {
+                     System.out.println("EXISTE USUARIO COM O TOKEN");
+
+                     Statement stUser = conn.createStatement();
+                     int rsUser = stUser.executeUpdate(sqlChangePass);
+
+                     if (rsUser == 1) {
+                         System.out.println("Gravou a nova senha");
+                         return true;
+                     } else {
+                         return false;
+                     }
+                 } else {
+                     System.out.println("NAO EXISTE USUARIO COM ESTE TOKEN");
+                     return false;
+                 }
+             } catch (Exception e) {
+                 System.err.println(e);
+             }
+
+             fecharConexao();
+             return false;
+        } else {
+            System.out.println("A NOVA SENHA E A SENHA DE CONFIRMAÇÃO NAO SÃO IGUAIS.");
+            return false;
+        }
     }
 }
