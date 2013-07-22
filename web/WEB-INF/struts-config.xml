@@ -7,10 +7,10 @@
 
 <struts-config>
     <form-beans>
-        <form-bean name="LoginForm" type="br.uniriotec.tracker.struts.LoginForm"/>
-        <form-bean name="NewUserForm" type="br.uniriotec.tracker.struts.NewUserForm"/>
-        <form-bean name="ForgotPasswordForm" type="br.uniriotec.tracker.struts.ForgotPasswordForm"/>
-        <form-bean name="ResetPasswordForm" type="br.uniriotec.tracker.struts.ResetPasswordForm"/>
+        <form-bean name="LoginForm" type="br.uniriotec.tracker.struts.form.LoginForm"/>
+        <form-bean name="NewUserForm" type="br.uniriotec.tracker.struts.form.NewUserForm"/>
+        <form-bean name="ForgotPasswordForm" type="br.uniriotec.tracker.struts.form.ForgotPasswordForm"/>
+        <form-bean name="ResetPasswordForm" type="br.uniriotec.tracker.struts.form.ResetPasswordForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -23,22 +23,22 @@
 
     <action-mappings>
         
-        <action name="LoginForm" path="/login" scope="request" type="br.uniriotec.tracker.struts.LoginAction" validate="false">
+        <action name="LoginForm" path="/login" scope="request" type="br.uniriotec.tracker.struts.action.LoginAction" validate="false">
             <forward name="failure" path="/login.jsp"/>
             <forward name="success" path="/loginSuccess.jsp"/>
         </action>
         
-        <action name="NewUserForm" path="/newUser" scope="request" type="br.uniriotec.tracker.struts.NewUserAction" validate="false">
+        <action name="NewUserForm" path="/newUser" scope="request" type="br.uniriotec.tracker.struts.action.NewUserAction" validate="false">
             <forward name="failure" path="/newUser.jsp"/>
             <forward name="success" path="/newUserSuccess.jsp"/>
         </action>
         
-        <action name="ForgotPasswordForm" path="/forgotPassword" scope="request" type="br.uniriotec.tracker.struts.ForgotPasswordAction" validate="false">
+        <action name="ForgotPasswordForm" path="/forgotPassword" scope="request" type="br.uniriotec.tracker.struts.action.ForgotPasswordAction" validate="false">
             <forward name="failure" path="/forgotPassword.jsp"/>
             <forward name="success" path="/forgotPasswordSuccess.jsp"/>
         </action>
         
-        <action name="ResetPasswordForm" path="/resetPassword" scope="request" type="br.uniriotec.tracker.struts.ResetPasswordAction" validate="false">
+        <action name="ResetPasswordForm" path="/resetPassword" scope="request" type="br.uniriotec.tracker.struts.action.ResetPasswordAction" validate="false">
             <forward name="failure" path="/resetPassword.jsp"/>
             <forward name="success" path="/resetPasswordSuccess.jsp"/>
         </action>

@@ -2,23 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uniriotec.tracker.struts;
+package br.uniriotec.tracker.struts.form;
 
 import javax.servlet.http.HttpServletRequest;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
+
 /**
  *
  * @author afonso
  */
-public class ResetPasswordForm extends org.apache.struts.action.ActionForm {
+public class LoginForm extends org.apache.struts.action.ActionForm {
     
     private String email;
-    private String token;
     private String password;
-    private String confirmPassword;
     
     // error message
     private String error;
@@ -28,8 +27,15 @@ public class ResetPasswordForm extends org.apache.struts.action.ActionForm {
     }
 
     public void setError() {
-        this.error =
-                "<span style='color:red'>Please provide valid entries for all fields</span>";
+        this.error = "<span style='color:red'>Invalid user or password</span>";
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
@@ -46,34 +52,10 @@ public class ResetPasswordForm extends org.apache.struts.action.ActionForm {
         email = string;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
     /**
      *
      */
-    public ResetPasswordForm() {
+    public LoginForm() {
         super();
     }
 
@@ -86,10 +68,11 @@ public class ResetPasswordForm extends org.apache.struts.action.ActionForm {
     @Override
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getEmail() == null) {
+        if (getEmail()== null || getPassword().length() < 1) {
             errors.add("email", new ActionMessage("error.email.required"));
             // TODO: add 'error.email.required' key to your resources
         }
         return errors;
     }
+    
 }

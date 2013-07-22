@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uniriotec.tracker.struts;
+package br.uniriotec.tracker.struts.action;
 
+import br.uniriotec.tracker.struts.form.NewUserForm;
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
 import javax.servlet.http.HttpServletRequest;
