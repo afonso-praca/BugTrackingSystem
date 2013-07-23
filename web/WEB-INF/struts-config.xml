@@ -11,6 +11,8 @@
         <form-bean name="NewUserForm" type="br.uniriotec.tracker.struts.form.NewUserForm"/>
         <form-bean name="ForgotPasswordForm" type="br.uniriotec.tracker.struts.form.ForgotPasswordForm"/>
         <form-bean name="ResetPasswordForm" type="br.uniriotec.tracker.struts.form.ResetPasswordForm"/>
+        
+        <form-bean name="NewSystemForm" type="br.uniriotec.tracker.struts.form.NewSystemForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -40,6 +42,11 @@
         
         <action name="ResetPasswordForm" path="/resetPassword" scope="request" type="br.uniriotec.tracker.struts.action.ResetPasswordAction" validate="false">
             <forward name="failure" path="/resetPassword.jsp"/>
+            <forward name="success" path="/resetPasswordSuccess.jsp"/>
+        </action>
+        
+        <action name="NewSystemForm" path="/newSystem" scope="request" type="br.uniriotec.tracker.struts.action.NewSystemAction" validate="false">
+            <forward name="failure" path="/newSystem.jsp"/>
             <forward name="success" path="/resetPasswordSuccess.jsp"/>
         </action>
         

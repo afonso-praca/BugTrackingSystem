@@ -28,8 +28,11 @@
           <a class="brand" href="/BugTrackingSystem">Bug Tracking System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active">
+              <li>
                 <a href="login.jsp">Home</a>
+              </li>
+              <li>
+                <a href="newSystem.jsp">Systems</a>
               </li>
             </ul>
           </div>
