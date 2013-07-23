@@ -53,7 +53,7 @@ public class LoginFilter implements Filter {
                 chain.doFilter(req, response);
 
         } else {
-            res.sendRedirect("enteruser.do"); 
+            res.sendRedirect("login.jsp"); 
         }
     }
 }
