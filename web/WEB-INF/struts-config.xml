@@ -50,6 +50,11 @@
             <forward name="success" path="/resetPasswordSuccess.jsp"/>
         </action>
         
+         <action name="Logout" path="/logout" scope="request" type="br.uniriotec.tracker.struts.action.Logout" validate="false">
+            <forward name="failure" path="/login.jsp"/>
+            <forward name="success" path="/login.jsp"/>
+        </action>
+        
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
         
     </action-mappings>

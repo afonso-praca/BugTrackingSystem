@@ -47,6 +47,18 @@
               </li>
             </ul>
           </div>
+          <div class="pull-right">
+              <ul class="nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Username</a></li>
+                  <li><a href="#">Change Password</a></li>
+                  <li><a href="logout.do">Logout</a></li>
+                </ul>
+              </li>
+              </ul>
+          </div>
         </div>
       </div>
     </div>

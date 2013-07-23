@@ -14,6 +14,7 @@
            <button class="btn btn-large btn-primary">Reset Password</button>
        </a>
    </div>
+   <div class="span5 pull-right"></div>
 </div>
 
 <jsp:include page="footer.jsp" />

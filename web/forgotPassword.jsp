@@ -34,6 +34,13 @@
                 </form>
                       
             </div>
+            
+            <div class="span5 pull-right">
+		
+                            
+             </div>
              </html:form>
+                
+            </div>
         
         <jsp:include page="footer.jsp" />
