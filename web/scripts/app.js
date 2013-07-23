@@ -6,5 +6,8 @@
 
 $(document).ready(function() {
     var a = Math.random() * 360;
-    $(".bug-image").css('transform', 'rotate(' + a + 'deg) scale(1)');
+    var opacity = Math.random() + .25;
+    $(".bug-image")
+        .css('transform', 'rotate(' + a + 'deg) scale(1)')
+        .css('opacity', opacity);
 });
