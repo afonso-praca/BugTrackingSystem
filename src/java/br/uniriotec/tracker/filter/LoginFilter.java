@@ -52,7 +52,16 @@ public class LoginFilter implements Filter {
         if (requestURL.toString().endsWith("login.do") 
                 || requestURL.toString().endsWith("forgotPassword.do")
                 || requestURL.toString().endsWith("newUser.do")
-                || requestURL.toString().endsWith("resetPassword.do")){
+                || requestURL.toString().endsWith("login.do")
+                || requestURL.toString().endsWith("resetPassword.do")
+                || requestURL.toString().endsWith("login.jsp")
+                || requestURL.toString().endsWith("loginSuccess.jsp")
+                || requestURL.toString().endsWith("newUser.jsp")
+                || requestURL.toString().endsWith("newUserSuccess.jsp")
+                || requestURL.toString().endsWith("forgotPassword.jsp")
+                || requestURL.toString().endsWith("forgotPasswordSuccess.jsp")
+                || requestURL.toString().endsWith("resetPassword.jsp")
+                || requestURL.toString().endsWith("resetPasswordSuccess.jsp")){
             isLogging = true;
         } else {
             isLogging = false;
