@@ -50,7 +50,7 @@
                 <a href="newUser.jsp">
                     <button class="btn btn-danger btn-large pull-left">Creat an account</button><br/><br/>  
                 </a>
-                <div><img src="img/bug.jpg" ></div>
+                <div><img src="img/bug.jpg" class="bug-image" ></div>
                             
              </div>
                 

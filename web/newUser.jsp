@@ -67,7 +67,7 @@
                 <a href="login.jsp">
                     <button class="btn btn-danger btn-large pull-left">Sign In</button><br/><br/>  
                 </a>
-                <div><img src="img/bug.jpg" ></div>
+                <div><img src="img/bug.jpg" class="bug-image"></div>
                             
              </div>
     

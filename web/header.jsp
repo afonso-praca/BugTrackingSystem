@@ -12,6 +12,11 @@
         <link rel="stylesheet" href="styles/libs/bootstrap.min.css">
         <link rel="stylesheet" href="styles/libs/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="styles/style.css">
+        
+        <script src="scripts/libs/jquery.js" type="text/javascript" ></script>
+        <script src="scripts/libs/bootstrap.min.js" type="text/javascript" ></script>
+        <script src="scripts/app.js" type="text/javascript" ></script>
+        
         <title>Bug Tracking System</title>
     </head>
     <body>
@@ -33,6 +38,12 @@
               </li>
               <li>
                 <a href="newSystem.jsp">Systems</a>
+              </li>
+              <li>
+                <a href="#">Components</a>
+              </li>
+              <li>
+                <a href="#">Tickets</a>
               </li>
             </ul>
           </div>
