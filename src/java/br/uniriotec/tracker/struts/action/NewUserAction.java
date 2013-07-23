@@ -9,6 +9,7 @@ import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -35,6 +36,10 @@ public class NewUserAction extends org.apache.struts.action.Action {
         String name = formBean.getName();
         String lastName = formBean.getLastName();
         String confirmedPassword = formBean.getConfirmedPassword();
+        
+        //HttpServletRequest req = (HttpServletRequest) request;
+        //HttpSession session = req.getSession();
+        //System.out.println(session.getAttribute("loginStatus"));
 
         // perform validation
         if ((email == null) || // name parameter does not exist

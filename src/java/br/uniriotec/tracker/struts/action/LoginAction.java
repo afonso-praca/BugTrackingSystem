@@ -7,8 +7,10 @@ package br.uniriotec.tracker.struts.action;
 import br.uniriotec.tracker.struts.form.LoginForm;
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -60,7 +62,15 @@ public class LoginAction extends org.apache.struts.action.Action {
             userExists = dao.verificaUsuario(email, password);
             
             if (userExists){
+                
+                HttpServletRequest req = (HttpServletRequest) request;
+                HttpSession session = req.getSession();
+                session.setAttribute("loginStatus", "LOGGED");
+                Cookie cookie = new Cookie("TrackerClientAuth", "123");
+                response.addCookie(cookie);
+                
                 return mapping.findForward(SUCCESS);
+                
             } else {
                 formBean.setError();
                 return mapping.findForward(FAILURE);
