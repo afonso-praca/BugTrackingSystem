@@ -45,10 +45,23 @@ public class LoginFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-
+        
+        StringBuffer requestURL = req.getRequestURL();
+        System.out.println(requestURL.toString());
+        boolean isLogging;
+        if (requestURL.toString().endsWith("login.do") 
+                || requestURL.toString().endsWith("forgotPassword.do")
+                || requestURL.toString().endsWith("newUser.do")
+                || requestURL.toString().endsWith("resetPassword.do")){
+            isLogging = true;
+        } else {
+            isLogging = false;
+        }
+        
         String loginStatus = (session.getAttribute("loginStatus") == null) ? "" : (String)session.getAttribute("loginStatus");
 
-        if(loginStatus.equals("LOGGED")){
+        
+        if (loginStatus.equals("LOGGED") || isLogging){
 
                 chain.doFilter(req, response);
 
