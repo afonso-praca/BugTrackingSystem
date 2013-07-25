@@ -43,7 +43,7 @@
                 <a href="#">Components</a>
               </li>
               <li>
-                <a href="#">Tickets</a>
+                <a href="newTicket.jsp">Tickets</a>
               </li>
             </ul>
           </div>

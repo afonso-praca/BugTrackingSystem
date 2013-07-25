@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="NewTicketForm" type="br.uniriotec.tracker.struts.form.NewTicketForm"/>
         <form-bean name="LoginForm" type="br.uniriotec.tracker.struts.form.LoginForm"/>
         <form-bean name="NewUserForm" type="br.uniriotec.tracker.struts.form.NewUserForm"/>
         <form-bean name="ForgotPasswordForm" type="br.uniriotec.tracker.struts.form.ForgotPasswordForm"/>
@@ -55,7 +56,10 @@
             <forward name="success" path="/login.jsp"/>
         </action>
         
-        <action path="/Welcome" forward="/welcomeStruts.jsp"/>
+        <action name="NewTicketForm" path="/newTicket" scope="request" type="br.uniriotec.tracker.struts.action.NewTicketAction" validate="false">
+            <forward name="failure" path="/newTicket.jsp"/>
+            <forward name="success" path="/login.jsp"/>
+        </action>
         
     </action-mappings>
     
