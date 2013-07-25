@@ -46,7 +46,7 @@ public class LoginAction extends org.apache.struts.action.Action {
         String password = formBean.getPassword();
         
         // control var
-        boolean userExists;
+        String userName;
 
         // perform validation
         if ((email == null) || // name parameter does not exist
@@ -59,15 +59,15 @@ public class LoginAction extends org.apache.struts.action.Action {
         }
         else{
             DAOUser dao = DAOFactory.getDAOUser();
-            userExists = dao.verificaUsuario(email, password);
+            userName = dao.verificaUsuario(email, password);
             
-            if (userExists){
+            if (userName != null){
                 
                 HttpServletRequest req = (HttpServletRequest) request;
                 HttpSession session = req.getSession();
+                
                 session.setAttribute("loginStatus", "LOGGED");
-                Cookie cookie = new Cookie("TrackerClientAuth", "123");
-                response.addCookie(cookie);
+                session.setAttribute("loginUser", userName);
                 
                 return mapping.findForward(SUCCESS);
                 
