@@ -48,6 +48,7 @@ public class LoginFilter implements Filter {
         
         StringBuffer requestURL = req.getRequestURL();
         System.out.println(requestURL.toString());
+        
         boolean isLogging;
         if (requestURL.toString().endsWith("login.do") 
                 || requestURL.toString().endsWith("forgotPassword.do")

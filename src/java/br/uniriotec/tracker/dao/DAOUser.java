@@ -21,8 +21,13 @@ public class DAOUser extends DAOMysqlConector {
     public final static String TYPE_OPERATOR = "OPR";
     public final static String TYPE_ADNISTRATOR = "ADM";
 
-    // VERIFICA EXISTENCIA DO USUARIO E SENHA
-    public boolean verificaUsuario(String email, String password) {
+    /**
+     *
+     * @param email
+     * @param password
+     * @return
+     */
+    public String verificaUsuario(String email, String password) {
 
         abrirConexao();
 
@@ -35,18 +40,20 @@ public class DAOUser extends DAOMysqlConector {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                System.out.println("EXISTE USUARIO");
-                return true;
+                System.out.println("EXISTE USUARIO ");
+                String name = rs.getString("name").concat(" ").concat(rs.getString("lastName"));
+                System.out.println(name);
+                return name;
             } else {
                 System.out.println("NAO EXISTE USUARIO");
-                return false;
+                return null;
             }
         } catch (Exception e) {
             System.err.println(e);
         }
 
         fecharConexao();
-        return false;
+        return null;
     }
     
     private boolean userExists(String email) throws SQLException{
