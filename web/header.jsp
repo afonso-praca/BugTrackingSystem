@@ -4,6 +4,7 @@
     Author     : afonso
 --%>
 
+<%@page import="br.uniriotec.tracker.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -57,10 +58,16 @@
               <ul class="nav">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <% out.println(session.getAttribute("loginUser")); %>
+                    <%
+                        User user = (User) session.getAttribute("loginUser");
+                        out.println(user.getName() + " " + user.getLastName()); 
+                    %>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Change Password</a></li>
+                    <li class="nav-header">Last Logon on 
+                        <% out.println(user.getLastLogonTime()); %>
+                    </li>
+                  <li><a href="forgotPassword.jsp">Change Password</a></li>
                   <li><a href="logout.do">Logout</a></li>
                 </ul>
               </li>

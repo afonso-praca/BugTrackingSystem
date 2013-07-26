@@ -4,12 +4,12 @@
  */
 package br.uniriotec.tracker.model;
 
+import java.util.Date;
+
 /**
  * @author afonso
  */
 public class User {
-    
-    private int id;
     private int type;
     private String name;
     private String lastName;
@@ -19,13 +19,14 @@ public class User {
     private boolean isActive;
     private boolean forcePasswordReset;
     private boolean shouldChangePassword;
+    private Date lastLogonTime;
+    private int failedLogins;
     
     public User() {
         
     }
 
-    public User(int id, int type, String name, String lastName, String email, String password, boolean isActive, boolean forcePasswordReset, boolean shouldChangePassword) {
-        this.id = id;
+    public User(int type, String name, String lastName, String email, String password, boolean isActive, boolean forcePasswordReset, boolean shouldChangePassword) {
         this.type = type;
         this.name = name;
         this.lastName = lastName;
@@ -34,14 +35,6 @@ public class User {
         this.isActive = isActive;
         this.forcePasswordReset = forcePasswordReset;
         this.shouldChangePassword = shouldChangePassword;
-    }
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -114,5 +107,21 @@ public class User {
 
     public void setShouldChangePassword(boolean shouldChangePassword) {
         this.shouldChangePassword = shouldChangePassword;
+    }
+    
+     public Date getLastLogonTime() {
+        return lastLogonTime;
+    }
+
+    public void setLastLogonTime(Date lastLogonTime) {
+        this.lastLogonTime = lastLogonTime;
+    }
+    
+    public int getFailedLogins() {
+        return failedLogins;
+    }
+
+    public void setFailedLogins(int failedLogins) {
+        this.failedLogins = failedLogins;
     }
 }
