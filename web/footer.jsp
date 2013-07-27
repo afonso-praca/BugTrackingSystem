@@ -4,7 +4,7 @@
     Author     : afonso
 --%>
         <footer>
-            <p>© Developed at Uniriotec - BR</p>
+            <p>©Uniriotec - BR</p>
         </footer>
         </div>
     </body>
