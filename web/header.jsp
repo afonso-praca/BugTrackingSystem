@@ -34,12 +34,12 @@
           <a class="brand" href="/BugTrackingSystem">Bug Tracking System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li>
-                <a href="login.jsp">Home</a>
-              </li>
               <%
                 if (session.getAttribute("loginStatus") == "LOGGED"){
               %>
+                <li>
+                  <a href="login.jsp">Home</a>
+                </li>
                 <li>
                   <a href="newSystem.jsp">Systems</a>
                 </li>
