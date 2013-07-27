@@ -37,15 +37,21 @@
               <li>
                 <a href="login.jsp">Home</a>
               </li>
-              <li>
-                <a href="newSystem.jsp">Systems</a>
-              </li>
-              <li>
-                <a href="#">Components</a>
-              </li>
-              <li>
-                <a href="newTicket.jsp">Tickets</a>
-              </li>
+              <%
+                if (session.getAttribute("loginStatus") == "LOGGED"){
+              %>
+                <li>
+                  <a href="newSystem.jsp">Systems</a>
+                </li>
+                <li>
+                  <a href="#">Components</a>
+                </li>
+                <li>
+                  <a href="newTicket.jsp">Tickets</a>
+                </li>
+              <%
+                }
+              %>
             </ul>
           </div>
           
