@@ -67,6 +67,7 @@
                     <li class="nav-header">Last Logon on 
                         <% out.println(user.getLastLogonTime()); %>
                     </li>
+                  <li><a href="accountEdit.jsp">Edit Account</a></li>
                   <li><a href="forgotPassword.jsp">Change Password</a></li>
                   <li><a href="logout.do">Logout</a></li>
                 </ul>

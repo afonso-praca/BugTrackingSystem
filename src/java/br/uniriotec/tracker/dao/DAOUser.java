@@ -66,6 +66,25 @@ public class DAOUser extends DAOMysqlConector {
         return null;
     }
     
+    public boolean setName(String email, String name, String lastName) throws SQLException {
+        
+        abrirConexao();
+        
+        String sql = "";
+        sql += "UPDATE ticketManager.USER SET name = " + "'" + name + "'";
+        sql += ", lastName = " + "'" + lastName + "'"
+                + " WHERE email = " + "'" + email + "'";
+        System.out.println(sql);
+        
+        Statement st = conn.createStatement();
+        int rs = st.executeUpdate(sql);
+        System.out.println(rs);
+        
+        fecharConexao();
+        
+        return true;
+    }
+    
     public boolean setFailedLogin(String email) throws SQLException {
         
         abrirConexao();
@@ -183,49 +202,6 @@ public class DAOUser extends DAOMysqlConector {
         return false;
     }
 
-    // CHANGE USER NAME 
-    public boolean changeUserName(String email, String newName, String newLastName) {
-
-        abrirConexao();
-
-        String sqlVerifyUser = "";
-        sqlVerifyUser += "SELECT * FROM ticketManager.USER";
-        sqlVerifyUser += " WHERE email = " + "'" + email + "'";
-
-        String sqlChangeUserName = "";
-        sqlChangeUserName += "INSERT INTO ticketManager.USER (name, lastName)";
-        sqlChangeUserName += "VALUES (" + "'"
-                + newName + "','"
-                + newLastName + "','"
-                + email + "')";
-
-        try {
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sqlVerifyUser);
-            if (rs.next()) {
-                System.out.println("EXISTE USUARIO PARA TROCAR O NOME");
-                System.out.println(sqlVerifyUser);
-                Statement stUser = conn.createStatement();
-                int rsUser = stUser.executeUpdate(sqlChangeUserName);
-                if (rsUser == 0) {
-                    System.out.println("Gravou");
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                System.out.println("NAO EXISTE USUARIO COM ESTE EMAIL");
-                return false;
-            }
-
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-        fecharConexao();
-        return false;
-    }
-
     // CHANGE USER PASSWORD
     public boolean chnageUserPassword(String email, String oldPass, String newPass, String confirmPass) {
         
@@ -274,7 +250,7 @@ public class DAOUser extends DAOMysqlConector {
         }
     }
     
-    // CHANGE USER PASSWORD
+    // CHANGE USER PASSWORD WITH TOKEN
     public boolean resetPassword(String email, String token, String newPass, String confirmPass) {
         
         if(newPass == null ? confirmPass == null : newPass.equals(confirmPass)){
