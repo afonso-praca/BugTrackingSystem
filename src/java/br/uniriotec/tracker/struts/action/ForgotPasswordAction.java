@@ -34,9 +34,6 @@ public class ForgotPasswordAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
          
-       
-
-         
         // extract user data
         ForgotPasswordForm formBean = (ForgotPasswordForm) form;
         String email = formBean.getEmail();
@@ -54,7 +51,9 @@ public class ForgotPasswordAction extends org.apache.struts.action.Action {
             String token = UUID.randomUUID().toString().substring(0, 8);
             System.out.println(token);
             DAOUser dao = DAOFactory.getDAOUser();
+            
             dao.createAccessToken(email, token);
+            dao.resetFailedLogin(email);
             
             // envia email
             /*Properties props = new Properties();
@@ -69,9 +68,8 @@ public class ForgotPasswordAction extends org.apache.struts.action.Action {
             msg.setText("This is the email message body");
            
             Transport.send(msg);*/
+            
+            return mapping.findForward(SUCCESS);
         }
-
-        return mapping.findForward(SUCCESS);
     }
-    
 }

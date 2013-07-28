@@ -14,6 +14,7 @@
         <form-bean name="ResetPasswordForm" type="br.uniriotec.tracker.struts.form.ResetPasswordForm"/>
         
         <form-bean name="NewSystemForm" type="br.uniriotec.tracker.struts.form.NewSystemForm"/>
+        <form-bean name="AccountEditForm" type="br.uniriotec.tracker.struts.form.AccountEditForm"/>
     </form-beans>
     
     <global-exceptions>
@@ -58,6 +59,11 @@
         
         <action name="NewTicketForm" path="/newTicket" scope="request" type="br.uniriotec.tracker.struts.action.NewTicketAction" validate="false">
             <forward name="failure" path="/newTicket.jsp"/>
+            <forward name="success" path="/login.jsp"/>
+        </action>
+        
+         <action name="AccountEditForm" path="/accountEdit" scope="request" type="br.uniriotec.tracker.struts.action.AccountEditAction" validate="false">
+            <forward name="failure" path="/accountEdit.jsp"/>
             <forward name="success" path="/login.jsp"/>
         </action>
         

@@ -4,6 +4,7 @@
     Author     : afonso
 --%>
 
+<%@page import="br.uniriotec.tracker.model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,18 +34,24 @@
           <a class="brand" href="/BugTrackingSystem">Bug Tracking System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li>
-                <a href="login.jsp">Home</a>
-              </li>
-              <li>
-                <a href="newSystem.jsp">Systems</a>
-              </li>
-              <li>
-                <a href="#">Components</a>
-              </li>
-              <li>
-                <a href="newTicket.jsp">Tickets</a>
-              </li>
+              <%
+                if (session.getAttribute("loginStatus") == "LOGGED"){
+              %>
+                <li>
+                  <a href="login.jsp">Home</a>
+                </li>
+                <li>
+                  <a href="newSystem.jsp">Systems</a>
+                </li>
+                <li>
+                  <a href="#">Components</a>
+                </li>
+                <li>
+                  <a href="newTicket.jsp">Tickets</a>
+                </li>
+              <%
+                }
+              %>
             </ul>
           </div>
           
@@ -57,10 +64,17 @@
               <ul class="nav">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <% out.println(session.getAttribute("loginUser")); %>
+                    <%
+                        User user = (User) session.getAttribute("loginUser");
+                        out.println(user.getName() + " " + user.getLastName()); 
+                    %>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Change Password</a></li>
+                    <li class="nav-header">Last Logon on 
+                        <% out.println(user.getLastLogonTime()); %>
+                    </li>
+                  <li><a href="accountEdit.jsp">Edit Account</a></li>
+                  <li><a href="forgotPassword.jsp">Change Password</a></li>
                   <li><a href="logout.do">Logout</a></li>
                 </ul>
               </li>

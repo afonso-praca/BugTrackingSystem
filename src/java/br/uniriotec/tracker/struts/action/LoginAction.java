@@ -7,6 +7,7 @@ package br.uniriotec.tracker.struts.action;
 import br.uniriotec.tracker.struts.form.LoginForm;
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
+import br.uniriotec.tracker.model.User;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,8 +46,8 @@ public class LoginAction extends org.apache.struts.action.Action {
         String email = formBean.getEmail();
         String password = formBean.getPassword();
         
-        // control var
-        String userName;
+        // RETURN OBJ
+        User user;
 
         // perform validation
         if ((email == null) || // name parameter does not exist
@@ -59,19 +60,22 @@ public class LoginAction extends org.apache.struts.action.Action {
         }
         else{
             DAOUser dao = DAOFactory.getDAOUser();
-            userName = dao.verificaUsuario(email, password);
+            user = dao.verificaUsuario(email, password);
             
-            if (userName != null){
-                
-                HttpServletRequest req = (HttpServletRequest) request;
-                HttpSession session = req.getSession();
-                
-                session.setAttribute("loginStatus", "LOGGED");
-                session.setAttribute("loginUser", userName);
-                
-                return mapping.findForward(SUCCESS);
-                
+            if (user != null){
+                if (user.getFailedLogins() < 3){
+                    HttpServletRequest req = (HttpServletRequest) request;
+                    HttpSession session = req.getSession();
+                    session.setAttribute("loginStatus", "LOGGED");
+                    session.setAttribute("loginUser", user);
+                    dao.resetFailedLogin(email);
+                    return mapping.findForward(SUCCESS);
+                } else {
+                    formBean.setError();
+                    return mapping.findForward(FAILURE);
+                }
             } else {
+                dao.setFailedLogin(email);
                 formBean.setError();
                 return mapping.findForward(FAILURE);
             }
