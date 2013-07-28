@@ -81,7 +81,7 @@ public class NewTicketForm extends org.apache.struts.action.ActionForm {
      */
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
-        if (getTitle() == null) {
+        if (getTitle().isEmpty()) {
             errors.add("Title", new ActionMessage("errors.required"));
             // TODO: add 'error.name.required' key to your resources
         }

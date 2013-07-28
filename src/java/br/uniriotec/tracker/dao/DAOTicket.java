@@ -25,11 +25,7 @@ public class DAOTicket {
          try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sqlQuery);
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            } 
+            return rs.first();
         } catch (Exception e) {
                 System.err.println(e);
         }

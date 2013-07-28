@@ -47,9 +47,8 @@ public class NewTicketAction extends org.apache.struts.action.Action {
         String component = formBean.getComponent();
         
         //Valitation
-        if (title == null) {
+        if (title.isEmpty()) {
             formBean.setError("<span style='color:red'> Title con't be blank.</span>");
-            System.out.println("Erro no titulo");
             return mapping.findForward(FAILURE);
         }
         
@@ -57,13 +56,11 @@ public class NewTicketAction extends org.apache.struts.action.Action {
         
         if(! dao.existSystem(system)) {
             formBean.setError("<span style='color:red'> The given System don't exist.</span>");
-            System.out.println("erro sistema nao existe");
             return mapping.findForward(FAILURE);
         }
         
         if(! dao.existComponent(component)){
             formBean.setError("<span style='color:red'> The given Component don't exist.</span>");
-            System.out.println("erro componente nao existe");
             return mapping.findForward(FAILURE);
         }
         
