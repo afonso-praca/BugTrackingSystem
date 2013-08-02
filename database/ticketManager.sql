@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `ticketManager` /*!40100 DEFAULT CHARACTER SET big5 */;
-USE `ticketManager`;
--- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (i686)
 --
--- Host: 127.0.0.1    Database: ticketManager
+-- Host: localhost    Database: ticketManager
 -- ------------------------------------------------------
--- Server version	5.5.32-0ubuntu0.12.04.1
+-- Server version	5.5.31-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,6 +16,16 @@ USE `ticketManager`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `ticketManager`
+--
+
+/*!40000 DROP DATABASE IF EXISTS `ticketManager`*/;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ticketManager` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `ticketManager`;
+
+--
 -- Table structure for table `COMPONENT`
 --
 
@@ -28,7 +36,7 @@ CREATE TABLE `COMPONENT` (
   `componentName` varchar(100) NOT NULL,
   `operadorEmail` varchar(255) NOT NULL,
   PRIMARY KEY (`componentName`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +61,7 @@ CREATE TABLE `FUNCTIONALITY` (
   `description` varchar(100) NOT NULL,
   `roleId` int(11) NOT NULL,
   PRIMARY KEY (`idFunctionality`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +84,7 @@ CREATE TABLE `ROLE` (
   `type` int(11) NOT NULL,
   `roleTag` varchar(45) NOT NULL,
   PRIMARY KEY (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +106,7 @@ DROP TABLE IF EXISTS `SYSTEM`;
 CREATE TABLE `SYSTEM` (
   `systemName` varchar(45) NOT NULL,
   PRIMARY KEY (`systemName`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +135,7 @@ CREATE TABLE `TICKET` (
   `operador` varchar(45) NOT NULL,
   PRIMARY KEY (`idTicket`),
   UNIQUE KEY `idTicket_UNIQUE` (`idTicket`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +167,7 @@ CREATE TABLE `USER` (
   `lastLogonTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `failedLogins` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=big5 COMMENT='Tabela de usuarios do sistema';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +176,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` VALUES ('Afonso','Carvalho','afonsoinfo@gmail.com','123','8d6f0d85','USR','0','1','1','2013-07-26 22:56:31',0),('Paulo','Cesar','paulo.inacio@uniriotec.br','123',NULL,'USR','0','1','1','0000-00-00 00:00:00',0);
+INSERT INTO `USER` (`name`, `lastName`, `email`, `password`, `token`, `type`, `isActive`, `forcePassReset`, `shouldChangePassword`, `lastLogonTime`, `failedLogins`) VALUES ('Afonso','Carvalho','afonsoinfo@gmail.com','123','8d6f0d85','USR','0','1','1','2013-07-27 01:56:31',0),('Paulo','Cesar','paulo.inacio@uniriotec.br','123',NULL,'USR','0','1','1','0000-00-00 00:00:00',0);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -181,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-26 20:53:51
+-- Dump completed on 2013-08-01 20:14:29
