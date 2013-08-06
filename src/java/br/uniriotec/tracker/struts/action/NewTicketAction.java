@@ -11,8 +11,9 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import br.uniriotec.tracker.struts.form.NewTicketForm;
-import br.uniriotec.tracker.dao.DAOTicket;
 import br.uniriotec.tracker.dao.DAOFactory;
+import br.uniriotec.tracker.dao.DAOTicket;
+import br.uniriotec.tracker.dao.DAOComponent;
 
 /**
  *
@@ -64,10 +65,22 @@ public class NewTicketAction extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         }
         
-        // Faltar validar se o componete entrado pelo usuario pertence ao sistema dado.
+        DAOComponent dao_component = new DAOComponent();
+        
+        if(! dao_component.ComponentBelongsToSystem(component, system)){
+            formBean.setError("<span style='color:red'> The given Component don't belongs to System " + system + ".</span>");
+            return mapping.findForward(FAILURE);
+        }
+        
+        String operator = dao_component.getOperator(component);
+        if (operator == null){
+            System.err.println("ERRO: foi obtido null ao obter operadorEmail da tablela component.");
+            return mapping.findForward(FAILURE);
+        }
         
         //addTicket
-        boolean sucess = dao.addTicket(title, system, component, description);
+       
+        boolean sucess = dao.addTicket(title, system, component, description, operator);
         if(sucess){
             return mapping.findForward(SUCCESS);
         } else{

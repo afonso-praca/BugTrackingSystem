@@ -35,7 +35,9 @@ DROP TABLE IF EXISTS `COMPONENT`;
 CREATE TABLE `COMPONENT` (
   `componentName` varchar(100) NOT NULL,
   `operadorEmail` varchar(255) NOT NULL,
-  PRIMARY KEY (`componentName`)
+  `systemName` varchar(45) NOT NULL,
+  PRIMARY KEY (`componentName`),
+  FOREIGN KEY (systemName) REFERENCES SYSTEM (systemName)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,7 +133,7 @@ CREATE TABLE `TICKET` (
   `systemKey` varchar(45) NOT NULL,
   `componentKey` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` varchar(45) NOT NULL,
   `operador` varchar(45) NOT NULL,
   PRIMARY KEY (`idTicket`),
   UNIQUE KEY `idTicket_UNIQUE` (`idTicket`)
