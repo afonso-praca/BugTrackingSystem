@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `TICKET`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `TICKET` (
-  `idTicket` int(11) NOT NULL,
+  `idTicket` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `systemKey` varchar(45) NOT NULL,
   `componentKey` varchar(45) NOT NULL,
