@@ -8,7 +8,6 @@ import br.uniriotec.tracker.dao.DAOFactory;
 import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.model.User;
 import br.uniriotec.tracker.struts.form.AccountEditForm;
-import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
