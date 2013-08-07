@@ -4,6 +4,7 @@
     Author     : afonso
 --%>
 
+<%@page import="br.uniriotec.tracker.model.User"%>
 <%@page import="br.uniriotec.tracker.model.Component"%>
 <%@page import="br.uniriotec.tracker.dao.DAOComponent"%>
 <%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
@@ -24,11 +25,21 @@
         <div class="clearfix">
             <h3 class="pull-left">Components</h3>
             <div class="pull-left title-options">
-                <div class="btn-group">
-                    <a href="newComponent.jsp">
-                        <button class="btn btn-success btn-mini pull-left" type="button">New Component</button>
-                    </a>
-                </div>
+                     <div class="btn-group">
+
+                            <%
+                                User user = (User) session.getAttribute("loginUser");
+                                System.out.println("user.getType() :");
+                                System.out.println(user.getType().toString());
+                                if (user.getType().equalsIgnoreCase("ADM")) {
+                            %>
+                            <a href="newComponent.jsp">
+                                <button class="btn btn-success btn-mini pull-left" type="button">New Component</button>
+                            </a>
+                            <%                        }
+                            %>
+                        </div>
+                                
             </div>
         </div>
         
