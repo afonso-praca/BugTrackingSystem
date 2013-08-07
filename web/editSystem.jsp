@@ -5,10 +5,33 @@
 --%>
 
 
+<%@page import="java.beans.Beans"%>
+<%@page import="br.uniriotec.tracker.struts.form.EditSystemForm"%>
+<%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
+<%@page import="br.uniriotec.tracker.dao.DAOFactory"%>
+<%@page import="br.uniriotec.tracker.dao.DAOSystem"%>
+
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
+<%@page import="br.uniriotec.tracker.dao.DAOFactory"%>
+<%@page import="br.uniriotec.tracker.dao.DAOSystem"%>
+
 <jsp:include page="header.jsp" />
+
+<html:messages id="name" property="name">
+	<bean:write name="system.getName()" />
+</html:messages>
+
+<% 
+
+    DAOSystem daoSystem = new DAOFactory().getDAOSystem();
+    BugTrackerSystem system = daoSystem.getSystem(1);
+    EditSystemForm edit = new EditSystemForm();
+    edit.setName(system.getName());
+    session.setAttribute("currentSystem", system.getId());
+
+%>
 
 <div class="row">
 
@@ -21,7 +44,7 @@
                     <div class="control-group">
                       <label class="control-label">Name</label>
                       <div class="controls">
-                        <html:text property="name" />
+                          <html:text property="name"/>
                       </div>
                     </div>
                       
@@ -69,6 +92,8 @@
         console.log(getQuerystringNameValue("id"));
 
     </script>
+    
+    
     
 </div>
 

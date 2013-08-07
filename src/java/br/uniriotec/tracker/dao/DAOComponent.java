@@ -4,10 +4,14 @@
  */
 package br.uniriotec.tracker.dao;
 
+import static br.uniriotec.tracker.dao.DAOMysqlConector.abrirConexao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.conn;
+import br.uniriotec.tracker.model.BugTrackerSystem;
+import br.uniriotec.tracker.model.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,6 +78,29 @@ public class DAOComponent extends DAOMysqlConector {
             return -1;
         }
 
+    }
+    
+    public String getSystemName(int id) {
+        try {
+
+            String sqlVerifySystem = "";
+            sqlVerifySystem += "SELECT * FROM ticketManager.SYSTEM";
+            sqlVerifySystem += " WHERE id = " + "'" + id + "'";
+
+            Statement st = conn.createStatement();
+            System.out.println(sqlVerifySystem);
+            ResultSet rs = st.executeQuery(sqlVerifySystem);
+            if (rs.next()) {
+                System.out.println("SISTEMA EXISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+                return rs.getString("systemName");
+            } else {
+                System.out.println("SISTEMA NAO EXISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
+                return null;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOComponent.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     public boolean createComponent(String name, String systemName, String operatorEmail) {
@@ -221,5 +248,34 @@ public class DAOComponent extends DAOMysqlConector {
 
         return null;
 
+    }
+    
+    // CHANGE USER NAME 
+    public ArrayList getComponentList() {
+         abrirConexao();
+         
+         ArrayList retorno = new ArrayList();
+         
+         String sql = "";
+         sql += "SELECT * FROM ticketManager.COMPONENT";
+         
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                
+                Component component = new Component();
+                component.setName(rs.getString("componentName"));
+                component.setOperatorEmail(rs.getString("operadorEmail"));
+                component.setSystemName(rs.getInt("systemId"));
+                retorno.add(component);
+            }
+            return retorno;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+         
+        fecharConexao();
+        return null;
     }
 }

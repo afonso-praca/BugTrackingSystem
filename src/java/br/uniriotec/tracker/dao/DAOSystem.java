@@ -60,6 +60,13 @@ public class DAOSystem extends DAOMysqlConector {
         return false;
     }
     
+    public BugTrackerSystem getSystem(int id){
+        BugTrackerSystem system = new BugTrackerSystem();
+        system.setId(1);
+        system.setName("sunda");
+        return system;
+    }
+    
      // CHANGE USER NAME 
     public ArrayList getSystemList() {
          abrirConexao();

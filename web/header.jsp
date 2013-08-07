@@ -44,7 +44,7 @@
                   <a href="systemList.jsp">Systems</a>
                 </li>
                 <li>
-                  <a href="newComponent.jsp">Components</a>
+                  <a href="componentList.jsp">Components</a>
                 </li>
                 <li>
                   <a href="newTicket.jsp">Add Tickets</a>

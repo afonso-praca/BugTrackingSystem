@@ -4,6 +4,8 @@
     Author     : afonso
 --%>
 
+<%@page import="br.uniriotec.tracker.model.Component"%>
+<%@page import="br.uniriotec.tracker.dao.DAOComponent"%>
 <%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
@@ -20,11 +22,11 @@
         
         
         <div class="clearfix">
-            <h3 class="pull-left">Systems</h3>
+            <h3 class="pull-left">Components</h3>
             <div class="pull-left title-options">
                 <div class="btn-group">
-                    <a href="newSystem.jsp">
-                        <button class="btn btn-success btn-mini pull-left" type="button">New System</button>
+                    <a href="newComponent.jsp">
+                        <button class="btn btn-success btn-mini pull-left" type="button">New Component</button>
                     </a>
                 </div>
             </div>
@@ -34,29 +36,37 @@
         <table class="table table-bordered table-striped table-clickable table-sticky table-hover-options">
             <thead>
                 <th>
+                    Component Name
+                </th>
+                 <th>
+                    Operator
+                </th>
+                <th>
                     System Name
                 </th>
             </thead>
             <tbody> <%
-                    DAOSystem daoSystem = DAOFactory.getDAOSystem();
-                    ArrayList<BugTrackerSystem> list = daoSystem.getSystemList();
+                    DAOComponent daoSystem = DAOFactory.getDAOComponent();
+                    ArrayList<Component> list = daoSystem.getComponentList();
                     
                     for (int i =0; i < list.size(); i++){
                    %>
                    <tr>
-                   <td>
-                   <%
-                        out.print(list.get(i).getName());
-                   %>
-                   <div class="btn-group pull-right">
-                   <%
-                        out.print("<a class='edit' href='javascript:void(0);' id=" + list.get(i).getId() + ">");
-                        out.print("<button class='btn'>Edit</button>");
-                        out.print("</a>");
-                   %>
-                   
-                   </div>
-                   </td>
+                    <td>
+                     <%
+                          out.print(list.get(i).getName());
+                     %>
+                    </td>
+                    <td>
+                     <%
+                          out.print(list.get(i).getOperatorEmail());
+                     %>
+                    </td>
+                     <td>
+                     <%
+                          out.print(daoSystem.getSystemName(list.get(i).getSystemName()));
+                     %>
+                    </td>
                    </tr>
                    <%
                     }
