@@ -52,6 +52,7 @@ public class DAOUser extends DAOMysqlConector {
                 user.setLastName(rs.getString("lastName"));
                 user.setLastLogonTime(rs.getDate("lastLogonTime"));
                 user.setFailedLogins(rs.getInt("failedLogins"));
+                user.setType(rs.getString("type"));
                 
                 return user;
             } else {

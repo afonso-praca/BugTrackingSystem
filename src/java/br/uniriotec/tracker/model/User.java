@@ -10,7 +10,7 @@ import java.util.Date;
  * @author afonso
  */
 public class User {
-    private int type;
+    private String type;
     private String name;
     private String lastName;
     private String email;
@@ -26,7 +26,7 @@ public class User {
         
     }
 
-    public User(int type, String name, String lastName, String email, String password, boolean isActive, boolean forcePasswordReset, boolean shouldChangePassword) {
+    public User(String type, String name, String lastName, String email, String password, boolean isActive, boolean forcePasswordReset, boolean shouldChangePassword) {
         this.type = type;
         this.name = name;
         this.lastName = lastName;
@@ -85,11 +85,11 @@ public class User {
         this.isActive = isActive;
     }
     
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
     

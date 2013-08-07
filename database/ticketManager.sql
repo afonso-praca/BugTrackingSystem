@@ -111,7 +111,7 @@ CREATE TABLE `TICKET` (
   `systemKey` varchar(45) NOT NULL,
   `componentKey` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
+  `status` varchar(45) NOT NULL DEFAULT '0',
   `operador` varchar(45) NOT NULL,
   PRIMARY KEY (`idTicket`),
   UNIQUE KEY `idTicket_UNIQUE` (`idTicket`)
