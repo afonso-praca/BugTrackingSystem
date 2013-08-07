@@ -10,6 +10,7 @@ import static br.uniriotec.tracker.dao.DAOMysqlConector.fecharConexao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,7 +44,7 @@ public class DAOSystem extends DAOMysqlConector {
                 System.out.println(sqlCreateSystem);
                 Statement stUser = conn.createStatement();
                 int rsUser = stUser.executeUpdate(sqlCreateSystem);
-                if (rsUser == 0) {
+                if (rsUser == 1) {
                     System.out.println("GRAVOU O NOVO SISTEMA!");
                     return true;
                 } else {
@@ -56,6 +57,32 @@ public class DAOSystem extends DAOMysqlConector {
 
         fecharConexao();
         return false;
+    }
+    
+     // CHANGE USER NAME 
+    public ArrayList getSystemList() {
+         abrirConexao();
+         
+         ArrayList retorno = new ArrayList();
+         
+         String sql = "";
+         sql += "SELECT * FROM ticketManager.SYSTEM";
+         
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("mais");
+                retorno.add(rs.getString("systemName"));
+                System.out.println(rs.getString("systemName"));
+            }
+            return retorno;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+         
+        fecharConexao();
+        return null;
     }
 
     // CHANGE USER NAME 

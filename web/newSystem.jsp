@@ -28,7 +28,8 @@
                     <div class="control-group">
                       <div class="controls">
                         <html:submit styleClass="btn btn-large btn-primary" value="Create" />
-                       </div>
+                        <span><bean:write name="NewSystemForm" property="error" filter="false"/></span>
+                      </div>
                     </div>
                 </form>
                       

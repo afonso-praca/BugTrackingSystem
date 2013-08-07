@@ -49,7 +49,7 @@
         
         <action name="NewSystemForm" path="/newSystem" scope="request" type="br.uniriotec.tracker.struts.action.NewSystemAction" validate="false">
             <forward name="failure" path="/newSystem.jsp"/>
-            <forward name="success" path="/resetPasswordSuccess.jsp"/>
+            <forward name="success" path="/systemList.jsp"/>
         </action>
         
          <action name="Logout" path="/logout" scope="request" type="br.uniriotec.tracker.struts.action.Logout" validate="false">
