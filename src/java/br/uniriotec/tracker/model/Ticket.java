@@ -12,25 +12,32 @@ public class Ticket {
     
     private int id;
     private String title;
-    private int systemKey;
-    private int componentKey;
+    private String system;
+    private String component;
     private String description;
-    private int status;
-    private int userKey;
+    private String status;
+    private String operator;
     private String[] comments;
     
     public Ticket() {
         
     }
 
-    public Ticket(int id, String title, int systemKey, int componentKey, String description, int status, int userKey) {
+    public Ticket(int id, String title, String systemKey, String componentKey, String description, String status, String userKey) {
         this.id = id;
         this.title = title;
-        this.systemKey = systemKey;
-        this.componentKey = componentKey;
+        this.system = systemKey;
+        this.component = componentKey;
         this.description = description;
         this.status = status;
-        this.userKey = userKey;
+        this.operator = userKey;
+    }
+    public Ticket(int id, String title, String systemKey, String componentKey, String description) {
+        this.id = id;
+        this.title = title;
+        this.system = systemKey;
+        this.component = componentKey;
+        this.description = description;
     }
 
     public int getId() {
@@ -49,20 +56,20 @@ public class Ticket {
         this.title = title;
     }
 
-    public int getSystemKey() {
-        return systemKey;
+    public String getSystemKey() {
+        return system;
     }
 
-    public void setSystemKey(int systemKey) {
-        this.systemKey = systemKey;
+    public void setSystemKey(String systemKey) {
+        this.system = systemKey;
     }
 
-    public int getComponentKey() {
-        return componentKey;
+    public String getComponentKey() {
+        return component;
     }
 
-    public void setComponentKey(int componentKey) {
-        this.componentKey = componentKey;
+    public void setComponentKey(String componentKey) {
+        this.component = componentKey;
     }
 
     public String getDescription() {
@@ -73,20 +80,20 @@ public class Ticket {
         this.description = description;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public int getUserKey() {
-        return userKey;
+    public String getUserKey() {
+        return operator;
     }
 
-    public void setUserKey(int userKey) {
-        this.userKey = userKey;
+    public void setUserKey(String userKey) {
+        this.operator = userKey;
     }
     
     public String[] getComments() {
