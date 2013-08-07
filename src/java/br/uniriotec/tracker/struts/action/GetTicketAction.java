@@ -42,7 +42,7 @@ public class GetTicketAction extends org.apache.struts.action.Action {
             throws Exception {
         
         DAOTicket dao = new DAOTicket();
-        Ticket ticket = dao.getTicket("teste_2");
+        Ticket ticket = dao.getTicket("teste");
         if (ticket == null){
             return mapping.findForward(FAILURE);
         }
