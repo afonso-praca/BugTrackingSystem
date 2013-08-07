@@ -10,6 +10,7 @@
 
 <jsp:include page="header.jsp" />
 
+<div class="row">
     
     <html:form action="/ticketEdit">
         <div class="well span6 pull-left">
@@ -61,7 +62,8 @@
         
     </html:form>
     
+   </div>
     
-</div>
+    
 
 <jsp:include page="footer.jsp" />
