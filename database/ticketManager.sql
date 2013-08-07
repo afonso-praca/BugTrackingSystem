@@ -97,8 +97,10 @@ DROP TABLE IF EXISTS `SYSTEM`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `SYSTEM` (
   `systemName` varchar(45) NOT NULL,
-  PRIMARY KEY (`systemName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `systemName_UNIQUE` (`systemName`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +109,7 @@ CREATE TABLE `SYSTEM` (
 
 LOCK TABLES `SYSTEM` WRITE;
 /*!40000 ALTER TABLE `SYSTEM` DISABLE KEYS */;
-INSERT INTO `SYSTEM` VALUES ('channel'),('checkout'),('logistics'),('payments'),('portal'),('rates and benefits'),('search'),('xpto');
+INSERT INTO `SYSTEM` VALUES ('channel',1),('checkout',2),('logistics',3),('payments',4),('portal',5),('rates and benefits',6),('search',7),('xpto',8);
 /*!40000 ALTER TABLE `SYSTEM` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +171,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` VALUES ('Afonso','Praça','afonsoinfo@gmail.com','123','8d6f0d85','USR','0','1','1','2013-07-27 01:56:31',0),('Paulo','Cesar','paulo.inacio@uniriotec.br','123',NULL,'USR','0','1','1','0000-00-00 00:00:00',0);
+INSERT INTO `USER` VALUES ('Afonso','Praça','afonsoinfo@gmail.com','321','6f8e4c6f','USR','0','1','1','2013-07-27 01:56:31',0),('Paulo','Cesar','paulo.inacio@uniriotec.br','123',NULL,'USR','0','1','1','0000-00-00 00:00:00',0);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -182,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-07  3:45:38
+-- Dump completed on 2013-08-07 14:20:07
