@@ -12,6 +12,10 @@
         
             <div class="row">
                 
+              <%
+                if (session.getAttribute("loginStatus") != "LOGGED"){
+              %>
+                
             <html:form action="/login">
             <div class="well span6 pull-left">
                 
@@ -53,6 +57,26 @@
                 <div><img src="img/bug.jpg" class="bug-image" ></div>
                             
              </div>
+              
+               <%
+                }
+              %>
+                 <%
+                if (session.getAttribute("loginStatus") == "LOGGED"){
+              %>
+                
+                    <ul class="app-list unstyled">
+                        <li class="span3"><a class="well well-small" href="systemList.jsp"><span>Systems</span></a></li>
+                        <li class="span3"><a class="well well-small" href="#"><span>Components</span></a></li>
+                        <li class="span3"><a class="well well-small" href="#"><span>Tickets</span></a></li>
+                    </ul>
+              
+              <%
+                }
+              %>
+                
+                
+                
                 
             </div>
         

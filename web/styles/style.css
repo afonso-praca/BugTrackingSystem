@@ -34,4 +34,29 @@ body {
     font-size: 15px;
 }
 
-.title-options{margin: 20px 0 0 15px;}
+.title-options{
+    margin: 20px 0 0 15px;
+}
+
+.app-list {
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.app-list a {
+    display: table;
+    font-size: 24px;
+    line-height: 35px;
+    width: 100%;
+}
+
+.app-list a span {
+    display: table-cell;
+    height: 120px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+a {
+    cursor: pointer;
+}

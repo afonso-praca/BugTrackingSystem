@@ -7,6 +7,7 @@ package br.uniriotec.tracker.dao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.abrirConexao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.conn;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.fecharConexao;
+import br.uniriotec.tracker.model.BugTrackerSystem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -72,9 +73,11 @@ public class DAOSystem extends DAOMysqlConector {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                System.out.println("mais");
-                retorno.add(rs.getString("systemName"));
-                System.out.println(rs.getString("systemName"));
+                
+                BugTrackerSystem system = new BugTrackerSystem();
+                system.setId(rs.getInt("id"));
+                system.setName(rs.getString("systemName"));
+                retorno.add(system);
             }
             return retorno;
         } catch (Exception e) {

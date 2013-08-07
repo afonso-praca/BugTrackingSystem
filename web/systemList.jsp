@@ -4,12 +4,14 @@
     Author     : afonso
 --%>
 
+<%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
 <%@page import="br.uniriotec.tracker.dao.DAOFactory"%>
 <%@page import="br.uniriotec.tracker.dao.DAOSystem"%>
+<%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
 
 <jsp:include page="header.jsp" />
 
@@ -37,18 +39,27 @@
             </thead>
             <tbody> <%
                     DAOSystem daoSystem = DAOFactory.getDAOSystem();
-                    ArrayList<String> list = daoSystem.getSystemList();
-                    
-                    System.out.println("hahah");
+                    ArrayList<BugTrackerSystem> list = daoSystem.getSystemList();
                     
                     for (int i =0; i < list.size(); i++){
                    %>
                    <tr>
                    <td>
                    <%
-                        
-                        out.print(list.get(i));
+                        out.print(list.get(i).getName());
                    %>
+                   <div class="btn-group pull-right">
+                   <%
+                        out.print("<a class='edit' href='javascript:void(0);' id=" + list.get(i).getId() + ">");
+                        out.print("<button class='btn'>Edit</button>");
+                        out.print("</a>");
+                   %>
+                       
+<!--                    <a href="editSystem.jsp">
+                        <button class="btn">Component List</button>
+                    </a>-->
+                   
+                   </div>
                    </td>
                    </tr>
                    <%
@@ -58,5 +69,15 @@
         </table>
     </div>    
 </div>
+            
+            <script>
+                
+                $('.edit').on('click', function (){
+                    var id = ($(this).attr('id'));
+                    location.href="editSystem.jsp?id=" + id;
+                });
+                
+            </script>
+            
 
 <jsp:include page="footer.jsp" />

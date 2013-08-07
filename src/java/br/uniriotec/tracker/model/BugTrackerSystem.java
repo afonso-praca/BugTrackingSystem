@@ -8,16 +8,16 @@ package br.uniriotec.tracker.model;
  *
  * @author afonso
  */
-public class System {
+public class BugTrackerSystem {
     
     private int id;
     private String name;
     
-    public System() {
+    public BugTrackerSystem() {
         
     }
 
-    public System(int id, String name) {
+    public BugTrackerSystem(int id, String name) {
         this.id = id;
         this.name = name;
     }
