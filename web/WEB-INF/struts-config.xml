@@ -15,6 +15,8 @@
         <form-bean name="ResetPasswordForm" type="br.uniriotec.tracker.struts.form.ResetPasswordForm"/>
         
         <form-bean name="NewSystemForm" type="br.uniriotec.tracker.struts.form.NewSystemForm"/>
+        <form-bean name="NewComponentForm" type="br.uniriotec.tracker.struts.form.NewComponentForm"/>
+        <form-bean name="EditSystemForm" type="br.uniriotec.tracker.struts.form.EditSystemForm"/>
         <form-bean name="AccountEditForm" type="br.uniriotec.tracker.struts.form.AccountEditForm"/>
     </form-beans>
     
@@ -30,7 +32,7 @@
         
         <action name="LoginForm" path="/login" scope="request" type="br.uniriotec.tracker.struts.action.LoginAction" validate="false">
             <forward name="failure" path="/login.jsp"/>
-            <forward name="success" path="/showTickets.do"/>
+            <forward name="success" path="/login.jsp"/>
         </action>
         
         <action name="NewUserForm" path="/newUser" scope="request" type="br.uniriotec.tracker.struts.action.NewUserAction" validate="false">
@@ -51,6 +53,16 @@
         <action name="NewSystemForm" path="/newSystem" scope="request" type="br.uniriotec.tracker.struts.action.NewSystemAction" validate="false">
             <forward name="failure" path="/newSystem.jsp"/>
             <forward name="success" path="/systemList.jsp"/>
+        </action>
+        
+        <action name="EditSystemForm" path="/editSystem" scope="request" type="br.uniriotec.tracker.struts.action.EditSystemAction" validate="false">
+            <forward name="failure" path="/editSystem.jsp"/>
+            <forward name="success" path="/systemList.jsp"/>
+        </action>
+        
+        <action name="NewComponentForm" path="/newComponent" scope="request" type="br.uniriotec.tracker.struts.action.NewComponentAction" validate="false">
+            <forward name="failure" path="/newComponent.jsp"/>
+            <forward name="success" path="/newComponentSuccess.jsp"/>
         </action>
         
          <action name="Logout" path="/logout" scope="request" type="br.uniriotec.tracker.struts.action.Logout" validate="false">

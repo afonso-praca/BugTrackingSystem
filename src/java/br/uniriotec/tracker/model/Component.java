@@ -10,26 +10,26 @@ package br.uniriotec.tracker.model;
  */
 public class Component {
     
-    private int id;
+    private int systemName;
     private String name;
-    private int userKey;
+    private String operatorEmail;
     
     public Component() {
         
     }
 
-    public Component(int id, String name, int userKey) {
-        this.id = id;
+    public Component(int systemName, String name, String operatorEmail) {
+        this.systemName = systemName;
         this.name = name;
-        this.userKey = userKey;
+        this.operatorEmail = operatorEmail;
     }
 
-    public int getId() {
-        return id;
+    public int getSystemName() {
+        return systemName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSystemName(int systemName) {
+        this.systemName = systemName;
     }
 
     public String getName() {
@@ -40,11 +40,16 @@ public class Component {
         this.name = name;
     }
 
-    public int getUserKey() {
-        return userKey;
+    public String getOperatorEmail() {
+        return operatorEmail;
     }
 
-    public void setUserKey(int userKey) {
-        this.userKey = userKey;
+    public void setOperatorEmail(String operatorEmail) {
+        this.operatorEmail = operatorEmail;
     }
+
+   
+
+ 
+    
 }
