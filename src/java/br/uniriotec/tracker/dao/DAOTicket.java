@@ -5,8 +5,11 @@
 package br.uniriotec.tracker.dao;
 
 import static br.uniriotec.tracker.dao.DAOMysqlConector.abrirConexao;
+import static br.uniriotec.tracker.dao.DAOMysqlConector.conn;
+import br.uniriotec.tracker.model.Ticket;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 
 /**
  *
@@ -38,6 +41,54 @@ public class DAOTicket extends DAOMysqlConector{
          try {
                 Statement addTicket = conn.createStatement();
                 int rs = addTicket.executeUpdate(sqlCreatTiket);
+                if (rs == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+                } catch (Exception e) {
+                    System.err.println(e);
+           }
+         fecharConexao();
+         return false;
+    }
+    
+    
+    public Ticket getTicket(String ticketTitle){
+        abrirConexao();
+        
+        String sqlQuery = "SELECT * FROM TICKET WHERE title = '" + ticketTitle + "'";
+        
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sqlQuery);
+            if (rs.first()){
+                int id = rs.getInt("idTicket");
+                String system = rs.getString("systemKey");
+                String component = rs.getString("componentKey");
+                String description = rs.getString("description");
+                return new Ticket(id, ticketTitle, system, component, description);
+            }
+        } catch (Exception e) {
+                System.err.println(e);
+        }
+        fecharConexao();
+        return null;
+    }
+    
+    public boolean updateTicket (int idTicket, String system, String component, String description, String title){
+        abrirConexao();
+        
+        String sqlQuery = "UPDATE TICKET SET title = '"
+                + title + "', "
+                + "systemKey = '" + system + "', "
+                + "componentKey = '" + component + "', "
+                + "description = '" + description + "' "
+                + "WHERE idTicket = " + idTicket;
+        System.out.println(sqlQuery);
+        try {
+                Statement addTicket = conn.createStatement();
+                int rs = addTicket.executeUpdate(sqlQuery);
                 if (rs == 1) {
                     return true;
                 } else {
