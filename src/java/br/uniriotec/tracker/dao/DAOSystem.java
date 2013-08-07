@@ -23,7 +23,7 @@ public class DAOSystem extends DAOMysqlConector {
         abrirConexao();
 
         String sqlVerifySystem = "";
-        sqlVerifySystem += "SELECT * FROM ticketManager.USER";
+        sqlVerifySystem += "SELECT * FROM ticketManager.SYSTEM";
         sqlVerifySystem += " WHERE systemName = " + "'" + systemName + "'";
 
         String sqlCreateSystem = "";
@@ -33,6 +33,7 @@ public class DAOSystem extends DAOMysqlConector {
 
         try {
             Statement st = conn.createStatement();
+            System.out.println(sqlVerifySystem);
             ResultSet rs = st.executeQuery(sqlVerifySystem);
             if (rs.next()) {
                 System.out.println("SISTEMA JA ESTA CADASTRADO");
