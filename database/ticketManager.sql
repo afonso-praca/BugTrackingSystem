@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (i686)
+CREATE DATABASE  IF NOT EXISTS `ticketManager` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ticketManager`;
+-- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: ticketManager
+-- Host: 127.0.0.1    Database: ticketManager
 -- ------------------------------------------------------
--- Server version	5.5.31-0ubuntu0.12.04.2
+-- Server version	5.5.32-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,16 +18,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `ticketManager`
---
-
-/*!40000 DROP DATABASE IF EXISTS `ticketManager`*/;
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ticketManager` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `ticketManager`;
-
---
 -- Table structure for table `COMPONENT`
 --
 
@@ -35,9 +27,7 @@ DROP TABLE IF EXISTS `COMPONENT`;
 CREATE TABLE `COMPONENT` (
   `componentName` varchar(100) NOT NULL,
   `operadorEmail` varchar(255) NOT NULL,
-  `systemName` varchar(45) NOT NULL,
-  PRIMARY KEY (`componentName`),
-  FOREIGN KEY (systemName) REFERENCES SYSTEM (systemName)
+  PRIMARY KEY (`componentName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -117,6 +107,7 @@ CREATE TABLE `SYSTEM` (
 
 LOCK TABLES `SYSTEM` WRITE;
 /*!40000 ALTER TABLE `SYSTEM` DISABLE KEYS */;
+INSERT INTO `SYSTEM` VALUES ('channel'),('checkout'),('logistics'),('payments'),('portal'),('rates and benefits'),('search'),('xpto');
 /*!40000 ALTER TABLE `SYSTEM` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,12 +119,12 @@ DROP TABLE IF EXISTS `TICKET`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `TICKET` (
-  `idTicket` int(11) NOT NULL AUTO_INCREMENT,
+  `idTicket` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `systemKey` varchar(45) NOT NULL,
   `componentKey` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL,
-  `status` varchar(45) NOT NULL,
+  `status` int(11) NOT NULL,
   `operador` varchar(45) NOT NULL,
   PRIMARY KEY (`idTicket`),
   UNIQUE KEY `idTicket_UNIQUE` (`idTicket`)
@@ -178,7 +169,7 @@ CREATE TABLE `USER` (
 
 LOCK TABLES `USER` WRITE;
 /*!40000 ALTER TABLE `USER` DISABLE KEYS */;
-INSERT INTO `USER` (`name`, `lastName`, `email`, `password`, `token`, `type`, `isActive`, `forcePassReset`, `shouldChangePassword`, `lastLogonTime`, `failedLogins`) VALUES ('Afonso','Carvalho','afonsoinfo@gmail.com','123','8d6f0d85','USR','0','1','1','2013-07-27 01:56:31',0),('Paulo','Cesar','paulo.inacio@uniriotec.br','123',NULL,'USR','0','1','1','0000-00-00 00:00:00',0);
+INSERT INTO `USER` VALUES ('Afonso','Praça','afonsoinfo@gmail.com','123','8d6f0d85','USR','0','1','1','2013-07-27 01:56:31',0),('Paulo','Cesar','paulo.inacio@uniriotec.br','123',NULL,'USR','0','1','1','0000-00-00 00:00:00',0);
 /*!40000 ALTER TABLE `USER` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -191,4 +182,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-01 20:14:29
+-- Dump completed on 2013-08-07  3:45:38

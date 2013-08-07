@@ -41,7 +41,7 @@
                   <a href="login.jsp">Home</a>
                 </li>
                 <li>
-                  <a href="newSystem.jsp">Systems</a>
+                  <a href="systemList.jsp">Systems</a>
                 </li>
                 <li>
                   <a href="#">Components</a>

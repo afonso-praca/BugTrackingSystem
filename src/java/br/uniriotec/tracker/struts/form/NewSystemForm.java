@@ -63,7 +63,7 @@ public class NewSystemForm extends org.apache.struts.action.ActionForm {
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
         if (getName() == null) {
-            errors.add("email", new ActionMessage("error.email.required"));
+            errors.add("name", new ActionMessage("error.email.required"));
             // TODO: add 'error.email.required' key to your resources
         }
         return errors;
