@@ -183,8 +183,9 @@ public class DAOComponent extends DAOMysqlConector {
 
     public boolean ComponentBelongsToSystem(String componentName, String systemName) {
         abrirConexao();
-
-        String sqlQuery = "SELECT componentName FROM COMPONENT where systemName = '" + systemName + "'";
+        
+        int systemId = VerifySystem(systemName);
+        String sqlQuery = "SELECT componentName FROM COMPONENT where systemId = '" + systemId + "'";
 
         try {
             Statement st = conn.createStatement();
