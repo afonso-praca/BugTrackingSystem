@@ -81,6 +81,19 @@
                      <td>
                      <%
                           out.print(dao.getSystemName(list.get(i).getSystemName()));
+                      %>  
+                      </td>
+                      <td>
+                          <div class="btn-group pull-right">
+                      <%
+                        if (user.getType().equals("ADM")){
+                            out.print("<a class='edit' href='javascript:void(0);' data-id=" + list.get(i).getName() + ">");
+                            out.print("<button class='left-space btn btn-mini'>Edit</button>");
+                            out.print("</a>");
+                            
+                            System.out.println("nome === "+list.get(i).getName());
+                        }
+                          
                      %>
                     </td>
                    </tr>
@@ -93,9 +106,9 @@
 </div>
             
 <script>
-    $('.edit').on('click', function (){
-        var id = ($(this).attr('id'));
-        location.href="editSystem.jsp?id=" + id;
+    $('.edit').on('click', function() {
+        var id = ($(this).data('id'));
+        location.href = "componentEdit.do?idComponent=" + id;
     });
 </script>
 

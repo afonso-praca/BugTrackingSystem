@@ -102,6 +102,34 @@ public class DAOComponent extends DAOMysqlConector {
             return null;
         }
     }
+    
+    public boolean updateComponent(String oldName, String newName, int system, String operator){
+         abrirConexao();
+         
+         String sql = "UPDATE COMPONENT SET componentName = '"
+                 + newName + "',"
+                 + "operadorEmail = '"
+                 + operator + "', "
+                 + "systemId ="
+                 + system
+                 + " WHERE componentName = '"
+                 + oldName + "'";
+         System.out.println(sql);
+         try{
+            Statement st = conn.createStatement();
+            int rs = st.executeUpdate(sql);
+            if (rs == 1) {
+                return true;
+            } else {
+                return false;
+            }
+         }catch (Exception e) {
+              System.err.println(e);
+            }
+         
+            fecharConexao();
+            return false;
+    }
 
     public boolean createComponent(String name, String systemName, String operatorEmail) {
 
@@ -278,6 +306,30 @@ public class DAOComponent extends DAOMysqlConector {
         }
          
         fecharConexao();
+        return null;
+    }
+    
+    public Component getComponent(String idComponent) {
+         abrirConexao();
+         
+         String sql = "";
+         sql += "SELECT * FROM ticketManager.COMPONENT WHERE componentName = '" + idComponent + "'";
+         System.out.println("Query --->" + sql);
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                String componentName = rs.getString("componentName");
+                String operatorEmail = rs.getString("operadorEmail");
+                int system = rs.getInt("systemId");
+                return new Component(system, componentName, operatorEmail);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+         
+        fecharConexao();
+        System.out.println("ERRO: Não foi possível obter componente do banco");
         return null;
     }
 }

@@ -15,14 +15,24 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  *
- * @author afonso
+ * @author helanio
  */
-public class NewComponentAction extends org.apache.struts.action.Action {
+public class ComponentEditSaveAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
     private final static String FAILURE = "failure";
 
+    /**
+     * This is the action called from the Struts framework.
+     *
+     * @param mapping The ActionMapping used to select this instance.
+     * @param form The optional ActionForm bean for this request.
+     * @param request The HTTP Request we are processing.
+     * @param response The HTTP Response we are processing.
+     * @throws java.lang.Exception
+     * @return
+     */
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
@@ -33,6 +43,7 @@ public class NewComponentAction extends org.apache.struts.action.Action {
         String name = formBean.getName();
         String operatorEmail = formBean.getOperatorEmail();
         String systemName = formBean.getSystemName();
+        String oldComponentName = formBean.getOldName();
 
         
         System.out.println("name");
@@ -54,15 +65,26 @@ public class NewComponentAction extends org.apache.struts.action.Action {
             formBean.setError();
             System.out.println("Deu reuim!");
             return mapping.findForward(FAILURE);
+        }
+        
+        DAOComponent dao = DAOFactory.getDAOComponent();
+        
+        
+        int systemId = dao.VerifySystem(systemName);
+
+        if (systemId == -1) {
+            System.out.println("system nao verificado");
+            return mapping.findForward(FAILURE);
         } else {
-            DAOComponent dao = DAOFactory.getDAOComponent();
-            if (dao.createComponent(name,systemName,operatorEmail) == true) {
+            
+            if (dao.updateComponent(oldComponentName, name,systemId,operatorEmail) == true) {
                 return mapping.findForward(SUCCESS);
             } else {
-                System.out.println("Deu merda!");
+                System.out.println("Erro ao fazer update de componente.");
                 formBean.setError();
                 return mapping.findForward(FAILURE);
             }
         }
+        
     }
 }

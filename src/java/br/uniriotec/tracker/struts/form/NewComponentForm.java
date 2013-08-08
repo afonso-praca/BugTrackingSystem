@@ -18,6 +18,7 @@ public class NewComponentForm extends org.apache.struts.action.ActionForm {
     private String systemName;
     private String name;
     private String operatorEmail;
+    private String oldName;
     // error message
     private String error;
 
@@ -27,16 +28,6 @@ public class NewComponentForm extends org.apache.struts.action.ActionForm {
 
     public void setSystemName(String systemName) {
         this.systemName = systemName;
-    }
-
-   
-
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
     }
 
     public String getName() {
@@ -51,9 +42,27 @@ public class NewComponentForm extends org.apache.struts.action.ActionForm {
         return operatorEmail;
     }
 
-    public void setOperatorEmail(String operadorEmail) {
-        this.operatorEmail = operadorEmail;
+    public void setOperatorEmail(String operatorEmail) {
+        this.operatorEmail = operatorEmail;
     }
+
+    public String getOldName() {
+        return oldName;
+    }
+
+    public void setOldName(String oldName) {
+        this.oldName = oldName;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    
 
     public void setError() {
         this.error =
