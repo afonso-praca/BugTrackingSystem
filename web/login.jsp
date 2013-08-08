@@ -4,6 +4,7 @@
     Author     : afonso
 --%>
 
+<%@page import="br.uniriotec.tracker.model.User"%>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
@@ -69,6 +70,27 @@
                         <li class="span3"><a class="well well-small" href="systemList.do"><span>Systems</span></a></li>
                         <li class="span3"><a class="well well-small" href="componentList.do"><span>Components</span></a></li>
                         <li class="span3"><a class="well well-small" href="ticketList.do"><span>Tickets</span></a></li>
+                        
+                        
+                          <%
+                                User user = (User) session.getAttribute("loginUser");
+                                System.out.println("user.getType() :");
+                                System.out.println(user.getType().toString());
+
+                                if (user.getType().equalsIgnoreCase("ADM")) {
+                            %>
+
+                            <li class="span3"><a class="well well-small" href="userList.do"><span>Users</span></a></li>
+
+                            <%                        }
+                            %>
+
+                            
+                       
+
+                                                
+                                                
+                        
                     </ul>
               
               <%

@@ -71,6 +71,7 @@
                         <%
                             out.print(list.get(i).getType());
                         %>
+                        
                         <div class="btn-group pull-right">
                             <%
 
