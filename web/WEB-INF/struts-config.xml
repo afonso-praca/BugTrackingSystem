@@ -55,17 +55,17 @@
         
         <action name="NewSystemForm" path="/newSystem" scope="request" type="br.uniriotec.tracker.struts.action.NewSystemAction" validate="false">
             <forward name="failure" path="/newSystem.jsp"/>
-            <forward name="success" path="/systemList.jsp"/>
+            <forward name="success" path="/systemList.do"/>
         </action>
         
         <action name="EditSystemForm" path="/editSystem" scope="request" type="br.uniriotec.tracker.struts.action.EditSystemAction" validate="false">
-            <forward name="failure" path="/systemList.jsp"/>
+            <forward name="failure" path="/systemList.do"/>
             <forward name="success" path="/editSystem.jsp"/>
         </action>
         
         <action name="EditSystemForm" path="/saveEditSystem" scope="request" type="br.uniriotec.tracker.struts.action.SaveSystemEditAction" validate="false">
             <forward name="failure" path="/editSystem.jsp"/>
-            <forward name="success" path="/systemList.jsp"/>
+            <forward name="success" path="/systemList.do"/>
         </action>
         
         <action name="NewComponentForm" path="/newComponent" scope="request" type="br.uniriotec.tracker.struts.action.NewComponentAction" validate="false">
@@ -103,8 +103,8 @@
         </action>
         
         <action name="DeleteSystem" path="/deleteSystem" scope="request" type="br.uniriotec.tracker.struts.action.DeleteSystemAction" validate="false">
-            <forward name="failure" path="/systemList.jsp"/>
-            <forward name="success" path="/systemList.jsp"/>
+            <forward name="failure" path="/systemList.do"/>
+            <forward name="success" path="/systemList.do"/>
         </action>
         
         <action name="TicketListAction" path="/ticketList" type="br.uniriotec.tracker.struts.action.TicketListAction">
