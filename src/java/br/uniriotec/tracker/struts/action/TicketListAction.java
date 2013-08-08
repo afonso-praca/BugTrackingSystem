@@ -43,7 +43,6 @@ public class TicketListAction extends org.apache.struts.action.Action {
         
         String filter = request.getParameter("filter");
         
-        System.out.println("Filtro = [" + filter + "]");
         
         if (filter == null || filter.isEmpty()){
             request.setAttribute("tickets", tickets);
