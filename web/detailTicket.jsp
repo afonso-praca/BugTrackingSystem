@@ -21,43 +21,43 @@
                     <div class="control-group">
                       <label class="control-label">Title</label>
                       <div class="controls">
-                           <html:text property="title" />
+                           <html:text property="title" disabled="true"/>
                       </div>
                     </div>
                       
                       <div class="control-group">
                       <label class="control-label">Description</label>
                       <div class="controls">
-                          <html:text property="description" />
+                          <html:text property="description" disabled="true"/>
                       </div>
                       </div>
                       
                       <div class="control-group">
                       <label class="control-label">System</label>
                       <div class="controls">
-                          <html:text property="system" />
+                          <html:text property="system" disabled="true"/>
                       </div>
                       </div>
                       
                       <div class="control-group">
                       <label class="control-label">Component</label>
                       <div class="controls">
-                          <html:text property="component" />
+                          <html:text property="component" disabled="true"/>
                       </div>
                       </div>
                       
                       <div class="control-group">
                       <label class="control-label">Status</label>
                       <div class="controls">
-                          <html:text property="status" />
+                          <html:text property="status" disabled="true"/>
                       </div>
                       </div>
                       
-                      <html:hidden property="idTicket" />
+                      <html:hidden property="idTicket"/>
                       
                     <div class="control-group">
                       <div class="controls">
-                        <html:submit styleClass="btn btn-large btn-primary" value="Edit" />
+                          <button class="btn btn-primary">Back to Ticket List</button>
                         <span><bean:write name="DetailTicketForm" property="error" filter="false"/></span>
                        </div>
                     </div>

@@ -7,7 +7,6 @@ package br.uniriotec.tracker.struts.action;
 import br.uniriotec.tracker.dao.DAOTicket;
 import br.uniriotec.tracker.model.Ticket;
 import br.uniriotec.tracker.struts.form.DetailTicketForm;
-import br.uniriotec.tracker.struts.form.TicketEditForm;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
