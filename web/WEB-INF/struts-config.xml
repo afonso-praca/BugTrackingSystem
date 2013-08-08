@@ -101,7 +101,7 @@
         </action>
         
         <action name="DetailTicketForm" path="/detailTicket" scope="request" type="br.uniriotec.tracker.struts.action.DetailTicketAction" validate="false">
-            <forward name="failure" path="/login.jsp"/>
+            <forward name="failure" path="/ticketList.jsp"/>
             <forward name="success" path="/detailTicket.jsp"/>
         </action>
      
