@@ -39,7 +39,20 @@ public class DAOMysqlConector {
     protected boolean ExistColumnElementInTable(String tableName, String columnName, String element){
         abrirConexao();
         String sqlQuery = "SELECT " + columnName + " FROM " + tableName + " WHERE " + columnName + " = '" + element + "'";
-        
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sqlQuery);
+            return rs.first();
+        } catch (Exception e) {
+                System.err.println(e);
+        }
+        fecharConexao();
+        return false;
+    }
+    
+    protected boolean ExistColumnElementInTableById(String tableName, String columnName, String element){
+        abrirConexao();
+        String sqlQuery = "SELECT " + columnName + " FROM " + tableName + " WHERE " + columnName + " = " + element;
          try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sqlQuery);

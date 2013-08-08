@@ -81,12 +81,13 @@
                         out.print("</a>");
                         
                         out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
-                        out.print("<button class='left-space btn btn-mini btn-danger'>Delete</button>");
-                        out.print("</a>");
+                        if (user.getType().equals("ADM")){
+                            out.print("<button class='left-space btn btn-mini btn-danger'>Delete</button>");
+                            out.print("</a>");
+                        }
                         
                         %>
 
-                        <button class="btn btn-mini btn-danger pull-right remover">Remover</button>
                     </td>
                          
                 </tr>
@@ -100,6 +101,7 @@
         </table>
     </div>    
 </div>
+                
 
 <script>
     

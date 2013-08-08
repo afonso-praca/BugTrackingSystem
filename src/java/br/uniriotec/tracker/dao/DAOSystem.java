@@ -141,14 +141,13 @@ public class DAOSystem extends DAOMysqlConector {
         return false;
     }
 
-    public boolean deleteTicket(String parameter) {
-        return true;
-    }
+ 
     
     public boolean deleteSystem(String idSystem){
         abrirConexao();
         
-        String sqlDelete = "DELETE FROM TICKET WHERE idTicket = " + idSystem;
+        String sqlDelete = "DELETE FROM SYSTEM WHERE id = " + idSystem;
+        System.out.println(sqlDelete);
         
         try {
                 Statement deleteSystem = conn.createStatement();
@@ -165,6 +164,14 @@ public class DAOSystem extends DAOMysqlConector {
            }
          fecharConexao();
          return false;
+    }
+    
+    public boolean existTicket (String system){
+        return this.ExistColumnElementInTable("TICKET", "systemKey", system);
+    }
+    
+    public boolean existComponent (String idSystem){
+        return this.ExistColumnElementInTableById("COMPONENT", "systemId", idSystem);
     }
     
      

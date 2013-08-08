@@ -38,10 +38,16 @@ public class DeleteSystemAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        
-        
         DAOSystem dao = new DAOSystem();
-        boolean hasDeleted = dao.deleteTicket(request.getParameter("id"));
+        
+        String idSystem = request.getParameter("id");
+        String nameSystem =dao.getSystem(idSystem).getName();
+        
+        if(dao.existComponent(idSystem) || dao.existTicket(nameSystem)){
+            return mapping.findForward(FAILURE);
+        }
+        
+        boolean hasDeleted = dao.deleteSystem(idSystem);
         
         if (hasDeleted == true){
             return mapping.findForward(SUCCESS);
