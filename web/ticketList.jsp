@@ -79,10 +79,17 @@
 </div>
             
 <script>
+    
     $('.edit').on('click', function (){
         var id = ($(this).data('id'));
         location.href="getTicket.do?id=" + id;
     });
+    
+    $('.delete').on('click', function (){
+        var id = ($(this).data('id'));
+        location.href="deleteTicket.do?id=" + id;
+    });
+    
 </script>
 
 <jsp:include page="footer.jsp" />
