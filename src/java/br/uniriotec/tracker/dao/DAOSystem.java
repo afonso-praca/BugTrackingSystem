@@ -60,11 +60,29 @@ public class DAOSystem extends DAOMysqlConector {
         return false;
     }
     
-    public BugTrackerSystem getSystem(int id){
+    public BugTrackerSystem getSystem(String id){
+        
+        abrirConexao();
         BugTrackerSystem system = new BugTrackerSystem();
-        system.setId(1);
-        system.setName("sunda");
-        return system;
+       
+        String sql = "";
+        sql += "SELECT * FROM ticketManager.SYSTEM";
+        sql += " WHERE id = " + "'" + id + "'";
+        
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) { 
+                system.setId(rs.getInt("id"));
+                system.setName(rs.getString("systemName"));
+            }
+            return system;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        
+        fecharConexao();
+        return null;
     }
     
      // CHANGE USER NAME 
@@ -96,31 +114,23 @@ public class DAOSystem extends DAOMysqlConector {
     }
 
     // CHANGE USER NAME 
-    public boolean changeSystemName(String systemName) {
+    public boolean changeSystemName(String systemName, int id) {
 
         abrirConexao();
-
-        String sqlVerifySystem = "";
-        sqlVerifySystem += "SELECT * FROM ticketManager.SYSTEM";
-        sqlVerifySystem += " WHERE systemName = " + "'" + systemName + "'";
-
-        String sqlNewSystemName = "";
-        sqlNewSystemName += "INSERT INTO ticketManager.SYSTEM (systemName)";
-        sqlNewSystemName += "VALUES (" + "'"
-                + systemName + "')";
-
+        
+        String sql = "";
+        sql += "UPDATE ticketManager.SYSTEM SET systemName = " + "'" + systemName + "'"
+                + " WHERE id = " + "'" + id + "'";
+        
+        System.out.println(sql);
+        
         try {
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sqlVerifySystem);
-            if (rs.next()) {
-                System.out.println("JA EXISTE SISTEMA COM O NOME INFORMADO). DIGITE OUTRO NOME.");
-                System.out.println(sqlVerifySystem);
-                return false;
-            } else {
-                Statement stUser = conn.createStatement();
-                int rsUser = stUser.executeUpdate(sqlNewSystemName);
+            int rs = st.executeUpdate(sql);
+            if (rs == 1) {
                 return true;
-
+            } else {
+                return false;
             }
 
         } catch (Exception e) {

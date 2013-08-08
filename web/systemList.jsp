@@ -71,8 +71,21 @@
                 <tr>
                     <td>
                         <%
-                            out.print(list.get(i).getName());
+                        out.print(list.get(i).getName());
+                         %>
+                        <div class="btn-group pull-right">
+                        <%
+                        
+                        out.print("<a class='edit' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
+                        out.print("<button class='left-space btn btn-mini'>Edit</button>");
+                        out.print("</a>");
+                        
+                        out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
+                        out.print("<button class='left-space btn btn-mini btn-danger'>Delete</button>");
+                        out.print("</a>");
+                        
                         %>
+
                         <button class="btn btn-mini btn-danger pull-right remover">Remover</button>
                     </td>
                          
@@ -89,10 +102,17 @@
 </div>
 
 <script>
+    
     $('.edit').on('click', function() {
-        var id = ($(this).attr('id'));
-        location.href = "editSystem.jsp?id=" + id;
+        var id = ($(this).data('id'));
+        location.href = "editSystem.do?id=" + id;
     });
+    
+    $('.delete').on('click', function() {
+        var id = ($(this).data('id'));
+        location.href = "deleteSystem.do?id=" + id;
+    });
+    
 </script>
 
 <jsp:include page="footer.jsp" />
