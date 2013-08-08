@@ -73,7 +73,7 @@
 <script>
     $('.edit').on('click', function (){
         var id = ($(this).attr('id'));
-        location.href="getTicket.do";
+        location.href="getTicket.do?id=" + id;
     });
 </script>
 
