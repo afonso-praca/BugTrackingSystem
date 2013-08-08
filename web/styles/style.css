@@ -60,3 +60,7 @@ body {
 a {
     cursor: pointer;
 }
+
+.left-space{
+    margin-left:5px;
+}

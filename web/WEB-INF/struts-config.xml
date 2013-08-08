@@ -81,8 +81,8 @@
         </action>
         
         <action name="TicketEditForm" path="/ticketEdit" scope="request" type="br.uniriotec.tracker.struts.action.TicketEditAction" validate="false">
-            <forward name="failure" path="/login.jsp"/>
-            <forward name="success" path="/login.jsp"/>
+            <forward name="failure" path="/ticketList.jsp"/>
+            <forward name="success" path="/ticketList.jsp"/>
         </action>
         
         <action name="TicketEditForm" path="/getTicket" scope="request" type="br.uniriotec.tracker.struts.action.GetTicketAction" validate="false">
