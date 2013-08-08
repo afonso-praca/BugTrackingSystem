@@ -34,9 +34,9 @@
             </div>
         </div>
         
-        <form class="form-search">
-            <input type="text" class="input-medium search-query">
-            <button type="submit" class="btn btn-mini">Search</button>
+        <form class="form-search" action="/BugTrackingSystem/ticketList.do">
+            <input type="text" class="input-medium search-query " name="filter">
+            <button type="submit" class="btn btn-mini" >Search</button>
           </form>
         
         <table class="table table-bordered table-striped table-clickable table-sticky table-hover-options">
@@ -46,9 +46,7 @@
                 </th>
             </thead>
             <tbody> <%
-                    DAOTicket dao = new DAOTicket();
-                    List<Ticket> list = dao.getAllTickets();
-                    
+                    List<Ticket> list = (List) request.getAttribute("tickets");
                     for (int i =0; i < list.size(); i++){
                    %>
                    <tr>
@@ -79,6 +77,8 @@
         var id = ($(this).attr('id'));
         location.href="getTicket.do?id=" + id;
     });
+    
+    $
 </script>
 
 <jsp:include page="footer.jsp" />

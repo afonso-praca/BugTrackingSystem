@@ -98,6 +98,9 @@
             <forward name="failure" path="/systemList.jsp"/>
             <forward name="success" path="/systemList.jsp"/>
         </action>
+        <action name="TicketListAction" path="/ticketList" type="br.uniriotec.tracker.struts.action.TicketListAction">
+            <forward name="success" path="/ticketList.jsp"/>
+        </action>/>
      
         
         

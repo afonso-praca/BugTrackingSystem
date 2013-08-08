@@ -52,12 +52,14 @@ public class NewComponentAction extends org.apache.struts.action.Action {
                 || (operatorEmail == null)
                 || (systemName == null))) {   // email lacks '@'
             formBean.setError();
+            System.out.println("Deu reuim!");
             return mapping.findForward(FAILURE);
         } else {
             DAOComponent dao = DAOFactory.getDAOComponent();
             if (dao.createComponent(name,systemName,operatorEmail) == true) {
                 return mapping.findForward(SUCCESS);
             } else {
+                System.out.println("Deu merda!");
                 formBean.setError();
                 return mapping.findForward(FAILURE);
             }
