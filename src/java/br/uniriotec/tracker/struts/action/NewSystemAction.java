@@ -5,7 +5,6 @@
 package br.uniriotec.tracker.struts.action;
 
 import br.uniriotec.tracker.struts.form.NewSystemForm;
-import br.uniriotec.tracker.dao.DAOUser;
 import br.uniriotec.tracker.dao.DAOFactory;
 import br.uniriotec.tracker.dao.DAOSystem;
 import javax.servlet.http.HttpServletRequest;
@@ -33,11 +32,10 @@ public class NewSystemAction extends org.apache.struts.action.Action {
         NewSystemForm formBean = (NewSystemForm) form;
         String name = formBean.getName();
 
+         System.out.println(name); 
+       
         // perform validation
-        if (name == null) {   // email lacks '@'
-            formBean.setError();
-            return mapping.findForward(FAILURE);
-        } else {
+        if (name != null && !name.equalsIgnoreCase("")) {
             DAOSystem dao = DAOFactory.getDAOSystem();
             if (dao.createSystem(name) == true){
                 return mapping.findForward(SUCCESS);
@@ -45,6 +43,9 @@ public class NewSystemAction extends org.apache.struts.action.Action {
                 formBean.setError();
                 return mapping.findForward(FAILURE);
             }
+        } else {   // email lacks '@'
+            formBean.setError();
+            return mapping.findForward(FAILURE);
         }
     }
 }

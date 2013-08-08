@@ -93,6 +93,11 @@
         <action name="ShowTicketsAction" path="/showTickets" scope="request" type="br.uniriotec.tracker.struts.action.ShowTicketsAction">
             <forward name="success" path="/loginSuccess.jsp"/>
         </action>
+        
+        <action name="DeleteSystem" path="/deleteSystem" scope="request" type="br.uniriotec.tracker.struts.action.deleteSystemAction" validate="false">
+            <forward name="failure" path="/systemList.jsp"/>
+            <forward name="success" path="/systemList.jsp"/>
+        </action>
      
         
         

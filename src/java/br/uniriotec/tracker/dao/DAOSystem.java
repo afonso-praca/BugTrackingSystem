@@ -130,6 +130,10 @@ public class DAOSystem extends DAOMysqlConector {
         fecharConexao();
         return false;
     }
+
+    public boolean deleteTicket(String parameter) {
+        return true;
+    }
     
      
 }

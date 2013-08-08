@@ -37,7 +37,7 @@ public class DAOTicket extends DAOMysqlConector{
                 + system + "','"
                 + component + "','"
                 + description + "',"
-                + "Novo" + ",'"
+                + 0 + ",'"
                 + operator + "')";
         
          try {

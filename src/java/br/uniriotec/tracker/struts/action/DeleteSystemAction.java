@@ -4,20 +4,18 @@
  */
 package br.uniriotec.tracker.struts.action;
 
-import br.uniriotec.tracker.struts.form.TicketEditForm;
+import br.uniriotec.tracker.dao.DAOSystem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-import br.uniriotec.tracker.dao.DAOTicket;
-import br.uniriotec.tracker.model.Ticket;
 
 /**
  *
  * @author helanio
  */
-public class GetTicketAction extends org.apache.struts.action.Action {
+public class DeleteSystemAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -40,20 +38,13 @@ public class GetTicketAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        DAOTicket dao = new DAOTicket();
-        Ticket ticket = dao.getTicket("Bug feio pra caramba");
-        if (ticket == null){
+        DAOSystem dao = new DAOSystem();
+        boolean hasDeleted = dao.deleteTicket(request.getParameter("id"));
+        
+        if (hasDeleted == true){
+            return mapping.findForward(SUCCESS);
+        } else {
             return mapping.findForward(FAILURE);
         }
-        
-        TicketEditForm formBean = (TicketEditForm) form;
-        formBean.setTitle(ticket.getTitle());
-        formBean.setDescription(ticket.getDescription());
-        formBean.setComponent(ticket.getComponentKey());
-        formBean.setSystem(ticket.getSystemKey());
-        formBean.setIdTicket(ticket.getId());
-        
-        
-        return mapping.findForward(SUCCESS);
     }
 }

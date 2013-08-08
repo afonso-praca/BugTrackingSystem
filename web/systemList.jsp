@@ -14,7 +14,7 @@
 <%@page import="br.uniriotec.tracker.dao.DAOSystem"%>
 <%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
 
-<jsp:include page="header.jsp" />
+<%@include file="header.jsp"%>
 
 <div class="row">
     <div class="span8">
@@ -23,8 +23,6 @@
         <div class="clearfix">
             <h3 class="pull-left">Systems</h3>
             <div class="pull-left title-options">
-
-
                 <div class="btn-group">
 
                     <%
@@ -34,17 +32,15 @@
 
                         if (user.getType().equalsIgnoreCase("ADM")) {
                     %>
+                    
                     <a href="newSystem.jsp">
                         <button class="btn btn-success btn-mini pull-left" type="button">New System</button>
                     </a>
-                    <%                        } else {
-                            System.out.println("SE FUDEU!!!");
-                        }
+                    
+                    <%
+                        } 
                     %>
                 </div>
-
-
-
             </div>
         </div>
 
@@ -72,8 +68,9 @@
                         <%
                             out.print(list.get(i).getName());
                         %>
-
+                        <button class="btn btn-mini btn-danger pull-right">Remover</button>
                     </td>
+                         
                 </tr>
                 <%
                     }
