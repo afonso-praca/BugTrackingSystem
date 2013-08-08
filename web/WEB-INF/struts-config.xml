@@ -128,9 +128,10 @@
             <forward name="failure" path="/login.jsp"/>
             <forward name="success" path="/editComponent.jsp"/>
         </action>
+        
         <action input="/" name="NewComponentForm" path="/componentEditSave" scope="request" type="br.uniriotec.tracker.struts.action.ComponentEditSaveAction" validate="false">
             <forward name="failure" path="/editComponent.jsp"/>
-            <forward name="success" path="/login.jsp"/>
+            <forward name="success" path="/componentList.do"/>
         </action>
         
         <action name="UserListForm" path="/userList" scope="request" type="br.uniriotec.tracker.struts.action.UserListAction" validate="false">
