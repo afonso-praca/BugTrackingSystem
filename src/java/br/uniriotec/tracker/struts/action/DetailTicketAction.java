@@ -6,6 +6,7 @@ package br.uniriotec.tracker.struts.action;
 
 import br.uniriotec.tracker.dao.DAOTicket;
 import br.uniriotec.tracker.model.Ticket;
+import br.uniriotec.tracker.struts.form.DetailTicketForm;
 import br.uniriotec.tracker.struts.form.TicketEditForm;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,7 @@ public class DetailTicketAction  extends org.apache.struts.action.Action {
             return mapping.findForward(FAILURE);
         }
         
-        TicketEditForm formBean = (TicketEditForm) form;
+        DetailTicketForm formBean = (DetailTicketForm) form;
         formBean.setTitle(ticket.getTitle());
         formBean.setDescription(ticket.getDescription());
         formBean.setComponent(ticket.getComponentKey());

@@ -58,8 +58,12 @@
                    %>
                    <div class="btn-group pull-right">
                    <%
+                        out.print("<a class='detail' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
+                        out.print("<button class='btn btn-mini'>Details</button>");
+                        out.print("</a>");
+                        
                         out.print("<a class='edit' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
-                        out.print("<button class='btn btn-mini'>Edit</button>");
+                        out.print("<button class='left-space btn btn-mini'>Edit</button>");
                         out.print("</a>");
                         
                         out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
@@ -79,6 +83,11 @@
 </div>
             
 <script>
+    
+    $('.detail').on('click', function (){
+        var id = ($(this).data('id'));
+        location.href="detailTicket.do?id=" + id;
+    });
     
     $('.edit').on('click', function (){
         var id = ($(this).data('id'));
