@@ -34,11 +34,15 @@
             </div>
         </div>
         
+        <form class="form-search">
+            <input type="text" class="input-medium search-query">
+            <button type="submit" class="btn btn-mini">Search</button>
+          </form>
         
         <table class="table table-bordered table-striped table-clickable table-sticky table-hover-options">
             <thead>
                 <th>
-                    System Name
+                    Ticket Name
                 </th>
             </thead>
             <tbody> <%
