@@ -46,7 +46,7 @@ public class SystemListAction extends org.apache.struts.action.Action {
             Iterator<BugTrackerSystem> iterator = systems.iterator();
            
             while (iterator.hasNext()) {
-                    if (! iterator.next().getName().equals(filter) ){
+                    if (! iterator.next().getName().contains((CharSequence)filter) ){
                         iterator.remove();
                     }
             }

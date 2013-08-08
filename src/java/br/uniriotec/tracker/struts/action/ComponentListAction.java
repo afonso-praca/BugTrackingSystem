@@ -4,8 +4,9 @@
  */
 package br.uniriotec.tracker.struts.action;
 
-import br.uniriotec.tracker.dao.DAOTicket;
-import br.uniriotec.tracker.model.Ticket;
+import br.uniriotec.tracker.dao.DAOComponent;
+import br.uniriotec.tracker.dao.DAOSystem;
+import br.uniriotec.tracker.model.Component;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author helanio
  */
-public class TicketListAction extends org.apache.struts.action.Action {
+public class ComponentListAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
@@ -38,33 +39,30 @@ public class TicketListAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        DAOTicket dao = new DAOTicket();
-        List<Ticket> tickets = dao.getAllTickets();
+        DAOComponent dao = new DAOComponent();
+        List<Component> components = dao.getComponentList();
         
         String filter = request.getParameter("filter");
         
         
         if (filter == null || filter.isEmpty()){
-            request.setAttribute("tickets", tickets);
+            request.setAttribute("components", components);
         }
         
         else{
-            Ticket ticket = null;
-            Iterator<Ticket> iterator = tickets.iterator();
+            DAOSystem daoSystem = new DAOSystem();
+            String systemName = "";
+            Component component = null;
+            Iterator<Component> iterator = components.iterator();
             while (iterator.hasNext()) {
-                    ticket = iterator.next();
-                    if (! (ticket.getTitle().contains((CharSequence)filter) || ticket.getSystemKey().equals(filter)) ){
+                    component = iterator.next();
+                    systemName = daoSystem.getSystem(Integer.toString(component.getSystemName())).getName();
+                    if (! (component.getName().contains((CharSequence)filter) || systemName.equals(filter)) ){
                         iterator.remove();
                     }
             }
-            request.setAttribute("tickets", tickets);
+            request.setAttribute("components", components);
         }
-        
-        
-  
-        
-        
-        
         
         return mapping.findForward(SUCCESS);
     }

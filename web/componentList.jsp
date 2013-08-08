@@ -4,6 +4,7 @@
     Author     : afonso
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="br.uniriotec.tracker.model.User"%>
 <%@page import="br.uniriotec.tracker.model.Component"%>
 <%@page import="br.uniriotec.tracker.dao.DAOComponent"%>
@@ -43,8 +44,8 @@
             </div>
         </div>
                         
-        <form class="form-search">
-            <input type="text" class="input-medium search-query">
+        <form class="form-search" action="/BugTrackingSystem/componentList.do">
+            <input type="text" class="input-medium search-query" name="filter">
             <button type="submit" class="btn btn-mini">Search</button>
         </form>
         
@@ -62,9 +63,8 @@
                 </th>
             </thead>
             <tbody> <%
-                    DAOComponent daoSystem = DAOFactory.getDAOComponent();
-                    ArrayList<Component> list = daoSystem.getComponentList();
-                    
+                     DAOComponent dao = new DAOComponent();
+                     List<Component> list = (List) request.getAttribute("components");
                     for (int i =0; i < list.size(); i++){
                    %>
                    <tr>
@@ -80,7 +80,7 @@
                     </td>
                      <td>
                      <%
-                          out.print(daoSystem.getSystemName(list.get(i).getSystemName()));
+                          out.print(dao.getSystemName(list.get(i).getSystemName()));
                      %>
                     </td>
                    </tr>

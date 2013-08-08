@@ -107,15 +107,19 @@
         
         <action name="TicketListAction" path="/ticketList" type="br.uniriotec.tracker.struts.action.TicketListAction">
             <forward name="success" path="/ticketList.jsp"/>
-        </action>/>
+        </action>
         
         <action name="SystemListAction" path="/systemList" type="br.uniriotec.tracker.struts.action.SystemListAction">
             <forward name="success" path="/systemList.jsp"/>
-        </action>/>
+        </action>
         
         <action name="DetailTicketForm" path="/detailTicket" scope="request" type="br.uniriotec.tracker.struts.action.DetailTicketAction" validate="false">
             <forward name="failure" path="/ticketList.jsp"/>
             <forward name="success" path="/detailTicket.jsp"/>
+        </action>
+        
+        <action name="ComponentListAction" path="/componentList" type="br.uniriotec.tracker.struts.action.ComponentListAction">
+            <forward name="success" path="/componentList.jsp"/>
         </action>
 
      

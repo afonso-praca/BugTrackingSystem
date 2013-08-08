@@ -44,7 +44,7 @@
                   <a href="systemList.do">Systems</a>
                 </li>
                 <li>
-                  <a href="componentList.jsp">Components</a>
+                  <a href="componentList.do">Components</a>
                 </li>
                 <li>
                   <a href="ticketList.do">Tickets</a>

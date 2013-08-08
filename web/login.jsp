@@ -67,7 +67,7 @@
                 
                     <ul class="app-list unstyled">
                         <li class="span3"><a class="well well-small" href="systemList.do"><span>Systems</span></a></li>
-                        <li class="span3"><a class="well well-small" href="componentList.jsp"><span>Components</span></a></li>
+                        <li class="span3"><a class="well well-small" href="componentList.do"><span>Components</span></a></li>
                         <li class="span3"><a class="well well-small" href="ticketList.do"><span>Tickets</span></a></li>
                     </ul>
               
