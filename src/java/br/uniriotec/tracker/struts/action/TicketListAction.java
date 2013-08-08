@@ -6,7 +6,6 @@ package br.uniriotec.tracker.struts.action;
 
 import br.uniriotec.tracker.dao.DAOTicket;
 import br.uniriotec.tracker.model.Ticket;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +18,11 @@ import org.apache.struts.action.ActionMapping;
  *
  * @author helanio
  */
-public class ShowTicketsAction extends org.apache.struts.action.Action {
+public class TicketListAction extends org.apache.struts.action.Action {
 
     /* forward name="success" path="" */
     private static final String SUCCESS = "success";
-    
-    
+
     /**
      * This is the action called from the Struts framework.
      *
@@ -40,19 +38,33 @@ public class ShowTicketsAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
-        System.out.println("filtro = " + request.getParameter("filter"));
-        
         DAOTicket dao = new DAOTicket();
         List<Ticket> tickets = dao.getAllTickets();
         
-        List<String> titles = new ArrayList<String>();
+        String filter = request.getParameter("filter");
         
-        Iterator<Ticket> iterator = tickets.iterator();
-	while (iterator.hasNext()) {
-		titles.add(iterator.next().getTitle());
-	}
+        System.out.println("Filtro = [" + filter + "]");
         
-        request.setAttribute("titles", titles);
+        if (filter == null || filter.isEmpty()){
+            request.setAttribute("tickets", tickets);
+        }
+        
+        else{
+            Ticket ticket = null;
+            Iterator<Ticket> iterator = tickets.iterator();
+            while (iterator.hasNext()) {
+                    ticket = iterator.next();
+                    if (! (ticket.getTitle().equals(filter) || ticket.getSystemKey().equals(filter)) ){
+                        iterator.remove();
+                    }
+            }
+            request.setAttribute("tickets", tickets);
+        }
+        
+        
+  
+        
+        
         
         
         return mapping.findForward(SUCCESS);

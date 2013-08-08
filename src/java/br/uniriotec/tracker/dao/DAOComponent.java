@@ -35,7 +35,7 @@ public class DAOComponent extends DAOMysqlConector {
             if (rs.next()) {
                 System.out.println("USUARIO EXISTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1");
                 System.out.println(rs.getString("type"));
-                if ((rs.getString("type").equalsIgnoreCase("USR"))) {
+                if ((rs.getString("type").equalsIgnoreCase("ADM"))) {
                     return true;
                 }
 
@@ -109,12 +109,14 @@ public class DAOComponent extends DAOMysqlConector {
         abrirConexao();
 
         if (!VerifyUserType(operatorEmail)) {
+            System.out.println("User nao verificado");
             return false;
         }
         
         int systemId = VerifySystem(systemName);
 
         if (systemId == -1) {
+            System.out.println("system nao verificado");
             return false;
         }
         
