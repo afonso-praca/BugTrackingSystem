@@ -12,7 +12,6 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import br.uniriotec.tracker.struts.form.TicketEditForm;
-import javax.servlet.http.HttpSession;
 
 /**
  *
