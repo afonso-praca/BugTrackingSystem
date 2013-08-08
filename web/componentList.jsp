@@ -61,6 +61,9 @@
                 <th>
                     System Name
                 </th>
+                <th style="width: 100px;">
+                    Actions
+                </th>
             </thead>
             <tbody> <%
                      DAOComponent dao = new DAOComponent();
@@ -89,6 +92,10 @@
                         if (user.getType().equals("ADM")){
                             out.print("<a class='edit' href='javascript:void(0);' data-id=" + list.get(i).getName() + ">");
                             out.print("<button class='left-space btn btn-mini'>Edit</button>");
+                            out.print("</a>");
+                            
+                            out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getName()+ ">");
+                            out.print("<button class='left-space btn btn-mini btn-danger'>Delete</button>");
                             out.print("</a>");
                             
                             System.out.println("nome === "+list.get(i).getName());
