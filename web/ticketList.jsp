@@ -42,7 +42,7 @@
         <table class="table table-bordered table-striped table-clickable table-sticky table-hover-options">
             <thead>
                 <th>
-                    System Name
+                    Ticket Name
                 </th>
             </thead>
             <tbody> <%
