@@ -7,10 +7,12 @@ package br.uniriotec.tracker.dao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.abrirConexao;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.conn;
 import static br.uniriotec.tracker.dao.DAOMysqlConector.fecharConexao;
+import br.uniriotec.tracker.model.BugTrackerSystem;
 import br.uniriotec.tracker.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,7 +33,7 @@ public class DAOUser extends DAOMysqlConector {
     public User verificaUsuario(String email, String password) {
 
         abrirConexao();
-        
+
         User user = new User();
 
         String sql = "";
@@ -46,14 +48,14 @@ public class DAOUser extends DAOMysqlConector {
                 System.out.println("EXISTE USUARIO ");
                 String name = rs.getString("name").concat(" ").concat(rs.getString("lastName"));
                 System.out.println(name);
-                
+
                 user.setName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setLastName(rs.getString("lastName"));
                 user.setLastLogonTime(rs.getDate("lastLogonTime"));
                 user.setFailedLogins(rs.getInt("failedLogins"));
                 user.setType(rs.getString("type"));
-                
+
                 return user;
             } else {
                 System.out.println("NAO EXISTE USUARIO");
@@ -66,77 +68,77 @@ public class DAOUser extends DAOMysqlConector {
         fecharConexao();
         return null;
     }
-    
+
     public boolean setName(String email, String name, String lastName) throws SQLException {
-        
+
         abrirConexao();
-        
+
         String sql = "";
         sql += "UPDATE ticketManager.USER SET name = " + "'" + name + "'";
         sql += ", lastName = " + "'" + lastName + "'"
                 + " WHERE email = " + "'" + email + "'";
         System.out.println(sql);
-        
+
         Statement st = conn.createStatement();
         int rs = st.executeUpdate(sql);
         System.out.println(rs);
-        
+
         fecharConexao();
-        
+
         return true;
     }
-    
+
     public boolean setFailedLogin(String email) throws SQLException {
-        
+
         abrirConexao();
-        
+
         String sql = "";
         sql += "UPDATE ticketManager.USER SET failedLogins = failedLogins+1";
         sql += " WHERE email = " + "'" + email + "'";
         System.out.println(sql);
-        
+
         Statement st = conn.createStatement();
         int rs = st.executeUpdate(sql);
         System.out.println(rs);
-        
+
         fecharConexao();
-        
+
         return true;
     }
-    
+
     public boolean resetFailedLogin(String email) throws SQLException {
-        
+
         abrirConexao();
-        
+
         String sql = "";
         sql += "UPDATE ticketManager.USER SET failedLogins = 0";
         sql += " WHERE email = " + "'" + email + "'";
         System.out.println(sql);
-        
+
         Statement st = conn.createStatement();
         int rs = st.executeUpdate(sql);
         System.out.println(rs);
-        
-       fecharConexao();
-        
+
+        fecharConexao();
+
         return true;
     }
-    
-    private boolean userExists(String email) throws SQLException{
-        
+
+    private boolean userExists(String email) throws SQLException {
+
         String sqlVerifyUser = "";
         sqlVerifyUser += "SELECT * FROM ticketManager.USER";
         sqlVerifyUser += " WHERE email = " + "'" + email + "'";
-        
+
         Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sqlVerifyUser);
-            if (rs.next()) {
-                System.out.println("EXISTE USUARIO");
-                return true;
-            } else {
-                System.out.println("NAO EXISTE USUARIO");
-                return false;
-            }
+        ResultSet rs = st.executeQuery(sqlVerifyUser);
+        if (rs.next()) {
+            System.out.println("EXISTE USUARIO");
+            return true;
+        } else {
+            System.out.println("NAO EXISTE USUARIO");
+            return false;
+        }
     }
 
     // CREATE ACCESS TOKEN
@@ -178,26 +180,26 @@ public class DAOUser extends DAOMysqlConector {
                 + 0 + "','"
                 + 1 + "','"
                 + 1 + "')";
-        
-            if (userExists(email)) {
-                System.out.println("EXISTE USUARIO");
-                return false;
-            } else {
-                try {
-                    System.out.println("NAO EXISTE USUARIO, LETS CREATE IT");
-                    System.out.println(sqlCreateUser);
-                    Statement stUser = conn.createStatement();
-                    int rsUser = stUser.executeUpdate(sqlCreateUser);
-                    if (rsUser == 1) {
-                        System.out.println("GRAVOU NEW USER");
-                        return true;
-                    } else {
-                        return false;
-                    }
-                } catch (Exception e) {
-                    System.err.println(e);
+
+        if (userExists(email)) {
+            System.out.println("EXISTE USUARIO");
+            return false;
+        } else {
+            try {
+                System.out.println("NAO EXISTE USUARIO, LETS CREATE IT");
+                System.out.println(sqlCreateUser);
+                Statement stUser = conn.createStatement();
+                int rsUser = stUser.executeUpdate(sqlCreateUser);
+                if (rsUser == 1) {
+                    System.out.println("GRAVOU NEW USER");
+                    return true;
+                } else {
+                    return false;
                 }
-             }
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
 
         fecharConexao();
         return false;
@@ -205,96 +207,126 @@ public class DAOUser extends DAOMysqlConector {
 
     // CHANGE USER PASSWORD
     public boolean chnageUserPassword(String email, String oldPass, String newPass, String confirmPass) {
-        
-        if(newPass == null ? confirmPass == null : newPass.equals(confirmPass)){
-             abrirConexao();
 
-             String sqlVerifyUserPass = "";
-             sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
-             sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
-             sqlVerifyUserPass += " AND password = " + "'" + oldPass + "'";
+        if (newPass == null ? confirmPass == null : newPass.equals(confirmPass)) {
+            abrirConexao();
 
-             String sqlChangePass = "";
-             sqlChangePass += "INSERT INTO ticketManager.USER (password)";
-             sqlChangePass += "VALUES (" + "'"
-                     + newPass + "')";
+            String sqlVerifyUserPass = "";
+            sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
+            sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
+            sqlVerifyUserPass += " AND password = " + "'" + oldPass + "'";
 
-             try {
-                 Statement st = conn.createStatement();
-                 ResultSet rs = st.executeQuery(sqlVerifyUserPass);
-                 if (rs.next()) {
-                     System.out.println("EXISTE USUARIO COM A SENHA ESPECIFICADA PARA QUE SEJA TROCADA");
+            String sqlChangePass = "";
+            sqlChangePass += "INSERT INTO ticketManager.USER (password)";
+            sqlChangePass += "VALUES (" + "'"
+                    + newPass + "')";
 
-                     Statement stUser = conn.createStatement();
-                     int rsUser = stUser.executeUpdate(sqlChangePass);
+            try {
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(sqlVerifyUserPass);
+                if (rs.next()) {
+                    System.out.println("EXISTE USUARIO COM A SENHA ESPECIFICADA PARA QUE SEJA TROCADA");
 
-                     if (rsUser == 0) {
-                         System.out.println("Gravou a nova senha");
-                         return true;
-                     } else {
-                         return false;
-                     }
-                 } else {
-                     System.out.println("NAO EXISTE USUARIO COM ESTA SENHA PARA QUE A MESMA SEJA INFORMADA");
-                     return false;
-                 }
-             } catch (Exception e) {
-                 System.err.println(e);
-             }
+                    Statement stUser = conn.createStatement();
+                    int rsUser = stUser.executeUpdate(sqlChangePass);
 
-             fecharConexao();
-             return false;
-        }else{
+                    if (rsUser == 0) {
+                        System.out.println("Gravou a nova senha");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    System.out.println("NAO EXISTE USUARIO COM ESTA SENHA PARA QUE A MESMA SEJA INFORMADA");
+                    return false;
+                }
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+
+            fecharConexao();
+            return false;
+        } else {
             System.out.println("A NOVA SENHA E A SENHA DE CONFIRMAÇÃO NAO SÃO IGUAIS.");
 
             return false;
         }
     }
-    
+
     // CHANGE USER PASSWORD WITH TOKEN
     public boolean resetPassword(String email, String token, String newPass, String confirmPass) {
-        
-        if(newPass == null ? confirmPass == null : newPass.equals(confirmPass)){
+
+        if (newPass == null ? confirmPass == null : newPass.equals(confirmPass)) {
             abrirConexao();
 
-             String sqlVerifyUserPass = "";
-             sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
-             sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
-             sqlVerifyUserPass += " AND token = " + "'" + token + "'";
-             
+            String sqlVerifyUserPass = "";
+            sqlVerifyUserPass += "SELECT * FROM ticketManager.USER";
+            sqlVerifyUserPass += " WHERE email = " + "'" + email + "'";
+            sqlVerifyUserPass += " AND token = " + "'" + token + "'";
+
             String sqlChangePass = "";
             sqlChangePass += "UPDATE ticketManager.USER SET password = " + "'" + newPass + "'";
             sqlChangePass += " WHERE email = " + "'" + email + "'";
             System.out.println(sqlChangePass);
 
-             try {
-                 Statement st = conn.createStatement();
-                 ResultSet rs = st.executeQuery(sqlVerifyUserPass);
-                 if (rs.next()) {
-                     System.out.println("EXISTE USUARIO COM O TOKEN");
+            try {
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(sqlVerifyUserPass);
+                if (rs.next()) {
+                    System.out.println("EXISTE USUARIO COM O TOKEN");
 
-                     Statement stUser = conn.createStatement();
-                     int rsUser = stUser.executeUpdate(sqlChangePass);
+                    Statement stUser = conn.createStatement();
+                    int rsUser = stUser.executeUpdate(sqlChangePass);
 
-                     if (rsUser == 1) {
-                         System.out.println("Gravou a nova senha");
-                         return true;
-                     } else {
-                         return false;
-                     }
-                 } else {
-                     System.out.println("NAO EXISTE USUARIO COM ESTE TOKEN");
-                     return false;
-                 }
-             } catch (Exception e) {
-                 System.err.println(e);
-             }
+                    if (rsUser == 1) {
+                        System.out.println("Gravou a nova senha");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    System.out.println("NAO EXISTE USUARIO COM ESTE TOKEN");
+                    return false;
+                }
+            } catch (Exception e) {
+                System.err.println(e);
+            }
 
-             fecharConexao();
-             return false;
+            fecharConexao();
+            return false;
         } else {
             System.out.println("A NOVA SENHA E A SENHA DE CONFIRMAÇÃO NAO SÃO IGUAIS.");
             return false;
         }
+    }
+
+  public ArrayList getSystemList() {
+      System.out.println("GET SYSTEM LIST");
+         abrirConexao();
+         
+         ArrayList retorno = new ArrayList();
+         
+         String sql = "";
+         sql += "SELECT * FROM ticketManager.USER";
+         
+         try {
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                
+                User user = new User();
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+               user.setType(rs.getString("type"));
+
+                retorno.add(user);
+            }
+            return retorno;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+         
+        fecharConexao();
+        return null;
     }
 }

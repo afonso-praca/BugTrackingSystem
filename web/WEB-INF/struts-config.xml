@@ -19,6 +19,8 @@
         <form-bean name="EditSystemForm" type="br.uniriotec.tracker.struts.form.EditSystemForm"/>
         <form-bean name="AccountEditForm" type="br.uniriotec.tracker.struts.form.AccountEditForm"/>
         <form-bean name="DetailTicketForm" type="br.uniriotec.tracker.struts.form.DetailTicketForm"/>
+        <form-bean name="UserListForm" type="br.uniriotec.tracker.struts.form.UserListForm"/>
+        
     </form-beans>
     
     <global-exceptions>
@@ -129,6 +131,11 @@
         <action input="/" name="NewComponentForm" path="/componentEditSave" scope="request" type="br.uniriotec.tracker.struts.action.ComponentEditSaveAction" validate="false">
             <forward name="failure" path="/editComponent.jsp"/>
             <forward name="success" path="/login.jsp"/>
+        </action>
+        
+        <action name="UserListForm" path="/userList" scope="request" type="br.uniriotec.tracker.struts.action.UserListAction" validate="false">
+            <forward name="failure" path="/userList.jsp"/>
+            <forward name="success" path="/userList.jsp"/>
         </action>
 
      

@@ -110,7 +110,7 @@ public class DetailTicketForm extends org.apache.struts.action.ActionForm {
     public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 //        HttpServletRequest req = (HttpServletRequest) request;
 //        HttpSession session = req.getSession();
-//        
+
 //        this.setTitle((String) session.getAttribute("title"));
         
         ActionErrors errors = new ActionErrors();

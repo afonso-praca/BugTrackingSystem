@@ -49,6 +49,9 @@
                 <li>
                   <a href="ticketList.do">Tickets</a>
                 </li>
+                 <li>
+                  <a href="userList.do">Users</a>
+                </li>
               <%
                 }
               %>
