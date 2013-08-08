@@ -71,7 +71,14 @@ public class DAOTicket extends DAOMysqlConector{
                 String component = rs.getString("componentKey");
                 String description = rs.getString("description");
                 String status = rs.getString("status");
-                return new Ticket(id, title, system, component, description, status);
+                
+                Ticket ticket = new Ticket(id, title, system, component, description, status);
+                ticket.setUserKey(rs.getString("operador"));
+                ticket.setStatus(rs.getString("status"));
+                
+                System.out.println(ticket.getStatus());
+                
+                return ticket;
             }
         } catch (Exception e) {
                 System.err.println(e);

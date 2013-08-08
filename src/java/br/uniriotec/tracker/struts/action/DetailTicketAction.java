@@ -53,6 +53,7 @@ public class DetailTicketAction  extends org.apache.struts.action.Action {
         formBean.setComponent(ticket.getComponentKey());
         formBean.setSystem(ticket.getSystemKey());
         formBean.setIdTicket(ticket.getId());
+        formBean.setOperador(ticket.getUserKey());
         
         
         return mapping.findForward(SUCCESS);

@@ -23,6 +23,15 @@ public class DetailTicketForm extends org.apache.struts.action.ActionForm {
     private String component;
     private String status;
     private String error;
+    private String operador;
+
+    public String getOperador() {
+        return operador;
+    }
+
+    public void setOperador(String operador) {
+        this.operador = operador;
+    }
 
     public String getStatus() {
         return status;

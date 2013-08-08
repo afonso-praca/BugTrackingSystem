@@ -60,6 +60,13 @@
                       </div>
                       </div>
                       
+                      <div class="control-group">
+                      <label class="control-label">Operador</label>
+                      <div class="controls">
+                          <html:text property="operador" disabled="true"/>
+                      </div>
+                      </div>
+                      
                     <div class="control-group">
                       <div class="controls">
                           <a href="ticketList.jsp">
