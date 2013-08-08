@@ -80,8 +80,12 @@
                         out.print("<button class='left-space btn btn-mini'>Edit</button>");
                         out.print("</a>");
                         
-                        out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
                         if (user.getType().equals("ADM")){
+                            out.print("<a class='components' href='javascript:void(0);' data-filter=" + list.get(i).getName() + ">");
+                            out.print("<button class='left-space btn btn-mini btn-info'>Components</button>");
+                            out.print("</a>");
+                            
+                            out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
                             out.print("<button class='left-space btn btn-mini btn-danger'>Delete</button>");
                             out.print("</a>");
                         }
@@ -108,6 +112,11 @@
     $('.edit').on('click', function() {
         var id = ($(this).data('id'));
         location.href = "editSystem.do?id=" + id;
+    });
+    
+    $('.components').on('click', function() {
+        var filter = ($(this).data('filter'));
+        location.href = "componentList.do?filter=" + filter;
     });
     
     $('.delete').on('click', function() {
