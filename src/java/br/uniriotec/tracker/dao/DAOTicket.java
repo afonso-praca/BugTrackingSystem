@@ -36,8 +36,8 @@ public class DAOTicket extends DAOMysqlConector{
                 + title + "','"
                 + system + "','"
                 + component + "','"
-                + description + "',"
-                + 0 + ",'"
+                + description + "','"
+                + "Novo" + "','"
                 + operator + "')";
         
          try {
@@ -56,20 +56,21 @@ public class DAOTicket extends DAOMysqlConector{
     }
     
     
-    public Ticket getTicket(String ticketTitle){
+    public Ticket getTicket(String idTicket){
         abrirConexao();
         
-        String sqlQuery = "SELECT * FROM TICKET WHERE title = '" + ticketTitle + "'";
+        String sqlQuery = "SELECT * FROM TICKET WHERE idTicket = " + idTicket;
         
          try {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sqlQuery);
             if (rs.first()){
                 int id = rs.getInt("idTicket");
+                String title = rs.getString("title");
                 String system = rs.getString("systemKey");
                 String component = rs.getString("componentKey");
                 String description = rs.getString("description");
-                return new Ticket(id, ticketTitle, system, component, description);
+                return new Ticket(id, title, system, component, description);
             }
         } catch (Exception e) {
                 System.err.println(e);

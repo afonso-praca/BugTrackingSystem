@@ -40,8 +40,11 @@ public class GetTicketAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
+        String idTicket = (String) request.getParameter("id");
+        System.out.println("Id = " + idTicket);
+        
         DAOTicket dao = new DAOTicket();
-        Ticket ticket = dao.getTicket("Bug feio pra caramba");
+        Ticket ticket = dao.getTicket(idTicket);
         if (ticket == null){
             return mapping.findForward(FAILURE);
         }
