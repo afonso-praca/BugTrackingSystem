@@ -6,36 +6,16 @@
 
 
 <%@page import="java.beans.Beans"%>
-<%@page import="br.uniriotec.tracker.struts.form.EditSystemForm"%>
-<%@page import="br.uniriotec.tracker.model.BugTrackerSystem"%>
-<%@page import="br.uniriotec.tracker.dao.DAOFactory"%>
-<%@page import="br.uniriotec.tracker.dao.DAOSystem"%>
+
 
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
-<%@page import="br.uniriotec.tracker.dao.DAOFactory"%>
-<%@page import="br.uniriotec.tracker.dao.DAOSystem"%>
-
 <jsp:include page="header.jsp" />
-
-<html:messages id="name" property="name">
-	<bean:write name="system.getName()" />
-</html:messages>
-
-<% 
-
-    DAOSystem daoSystem = new DAOFactory().getDAOSystem();
-    BugTrackerSystem system = daoSystem.getSystem(1);
-    EditSystemForm edit = new EditSystemForm();
-    edit.setName(system.getName());
-    session.setAttribute("currentSystem", system.getId());
-
-%>
 
 <div class="row">
 
-            <html:form action="/editSystem">
+            <html:form action="/saveEditSystem">
             <div class="well span6 pull-left">
                 
                 <form class="form-horizontal">
@@ -48,9 +28,11 @@
                       </div>
                     </div>
                       
+                      <html:hidden property="id" />
+                      
                     <div class="control-group">
                       <div class="controls">
-                        <html:submit styleClass="btn btn-large btn-primary" value="Create" />
+                        <html:submit styleClass="btn btn-primary" value="Edit" />
                         <span><bean:write name="EditSystemForm" property="error" filter="false"/></span>
                       </div>
                     </div>
@@ -63,37 +45,6 @@
 		
                             
              </div>
-    
-     <script>
-        
-        function getQuerystringNameValue(name)
-        {
-            // For example... passing a name parameter of "name1" will return a value of "100", etc.
-            // page.htm?name1=100&name2=101&name3=102
-
-            var winURL = window.location.href;
-            var queryStringArray = winURL.split("?");
-            var queryStringParamArray = queryStringArray[1].split("&");
-            var nameValue = null;
-
-            for ( var i=0; i<queryStringParamArray.length; i++ )
-            {           
-                queryStringNameValueArray = queryStringParamArray[i].split("=");
-
-                if ( name == queryStringNameValueArray[0] )
-                {
-                    nameValue = queryStringNameValueArray[1];
-                }                       
-            }
-
-            return nameValue;
-        }
-        
-        console.log(getQuerystringNameValue("id"));
-
-    </script>
-    
-    
     
 </div>
 
