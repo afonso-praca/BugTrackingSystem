@@ -22,7 +22,18 @@ public class TicketEditForm extends org.apache.struts.action.ActionForm {
     private String description;
     private String system;
     private String component;
+    private String status;
     private String error;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
 
     public int getIdTicket() {
         return idTicket;

@@ -55,6 +55,8 @@ public class GetTicketAction extends org.apache.struts.action.Action {
         formBean.setComponent(ticket.getComponentKey());
         formBean.setSystem(ticket.getSystemKey());
         formBean.setIdTicket(ticket.getId());
+        formBean.setStatus(ticket.getStatus());
+        System.out.println("Estatus = " + ticket.getStatus());
         
         
         return mapping.findForward(SUCCESS);

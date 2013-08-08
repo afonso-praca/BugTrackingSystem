@@ -46,6 +46,13 @@
                       </div>
                       </div>
                       
+                      <div class="control-group">
+                      <label class="control-label">Status</label>
+                      <div class="controls">
+                          <html:text property="status" />
+                      </div>
+                      </div>
+                      
                       <html:hidden property="idTicket" />
                       
                     <div class="control-group">

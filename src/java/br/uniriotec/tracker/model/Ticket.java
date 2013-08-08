@@ -32,12 +32,13 @@ public class Ticket {
         this.status = status;
         this.operator = userKey;
     }
-    public Ticket(int id, String title, String systemKey, String componentKey, String description) {
+    public Ticket(int id, String title, String systemKey, String componentKey, String description, String status) {
         this.id = id;
         this.title = title;
         this.system = systemKey;
         this.component = componentKey;
         this.description = description;
+        this.status = status;
     }
 
     public int getId() {
