@@ -56,8 +56,16 @@
                    %>
                    <div class="btn-group pull-right">
                    <%
-                        out.print("<a class='edit' href='javascript:void(0);' id=" + list.get(i).getId() + ">");
-                        out.print("<button class='btn'>Edit</button>");
+                        out.print("<a class='detail' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
+                        out.print("<button class='btn btn-mini'>Details</button>");
+                        out.print("</a>");
+                        
+                        out.print("<a class='edit' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
+                        out.print("<button class='left-space btn btn-mini'>Edit</button>");
+                        out.print("</a>");
+                        
+                        out.print("<a class='delete' href='javascript:void(0);' data-id=" + list.get(i).getId() + ">");
+                        out.print("<button class='left-space btn btn-mini btn-danger'>Delete</button>");
                         out.print("</a>");
                    %>
                    
@@ -73,12 +81,22 @@
 </div>
             
 <script>
+    
+    $('.detail').on('click', function (){
+        var id = ($(this).data('id'));
+        location.href="detailTicket.do?id=" + id;
+    });
+    
     $('.edit').on('click', function (){
-        var id = ($(this).attr('id'));
+        var id = ($(this).data('id'));
         location.href="getTicket.do?id=" + id;
     });
     
-    $
+    $('.delete').on('click', function (){
+        var id = ($(this).data('id'));
+        location.href="deleteTicket.do?id=" + id;
+    });
+    
 </script>
 
 <jsp:include page="footer.jsp" />
