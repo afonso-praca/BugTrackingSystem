@@ -98,8 +98,8 @@ public class DAOTicket extends DAOMysqlConector{
                 + "WHERE idTicket = " + idTicket;
         System.out.println(sqlQuery);
         try {
-                Statement addTicket = conn.createStatement();
-                int rs = addTicket.executeUpdate(sqlQuery);
+                Statement updateTicket = conn.createStatement();
+                int rs = updateTicket.executeUpdate(sqlQuery);
                 if (rs == 1) {
                     return true;
                 } else {
@@ -138,6 +138,28 @@ public class DAOTicket extends DAOMysqlConector{
         fecharConexao();
         return tickets;
     }
+    
+//    public boolean deleteTicket(String idTicket){
+//        abrirConexao();
+//        
+//        String sqlDelete = "DELETE FROM TICKET WHERE idTicket = " + idTicket;
+//        
+//        try {
+//                Statement deleteTicket = conn.createStatement();
+//                int rs = deleteTicket.executeUpdate(sqlDelete);
+//                deleteTicket.
+//                if (rs == 1) {
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+//                } catch (Exception e) {
+//                    System.err.println(e);
+//           }
+//         fecharConexao();
+//         return false;
+        
+//    }
     
 
     

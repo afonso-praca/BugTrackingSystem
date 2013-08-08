@@ -38,6 +38,8 @@ public class DeleteSystemAction extends org.apache.struts.action.Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         
+        
+        
         DAOSystem dao = new DAOSystem();
         boolean hasDeleted = dao.deleteTicket(request.getParameter("id"));
         

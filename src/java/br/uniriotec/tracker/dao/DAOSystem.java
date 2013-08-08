@@ -135,5 +135,27 @@ public class DAOSystem extends DAOMysqlConector {
         return true;
     }
     
+    public boolean deleteSystem(String idSystem){
+        abrirConexao();
+        
+        String sqlDelete = "DELETE FROM TICKET WHERE idTicket = " + idSystem;
+        
+        try {
+                Statement deleteSystem = conn.createStatement();
+                int rs = deleteSystem.executeUpdate(sqlDelete);
+                if (rs == 1) {
+                    System.out.println("Sistema deletado");
+                    return true;
+                } else {
+                    System.out.println("ERRO: sistema não deletado");
+                    return false;
+                }
+            } catch (Exception e) {
+                 System.err.println(e);
+           }
+         fecharConexao();
+         return false;
+    }
+    
      
 }

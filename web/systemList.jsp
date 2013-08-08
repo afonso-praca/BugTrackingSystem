@@ -73,7 +73,7 @@
                         <%
                             out.print(list.get(i).getName());
                         %>
-                        <button class="btn btn-mini btn-danger pull-right">Remover</button>
+                        <button class="btn btn-mini btn-danger pull-right remover">Remover</button>
                     </td>
                          
                 </tr>

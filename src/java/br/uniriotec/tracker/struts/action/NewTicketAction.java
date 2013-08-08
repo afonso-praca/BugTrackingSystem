@@ -49,7 +49,7 @@ public class NewTicketAction extends org.apache.struts.action.Action {
         
         //Valitation
         if (title.isEmpty()) {
-            formBean.setError("<span style='color:red'> Title con't be blank.</span>");
+            formBean.setError("<span style='color:red'> Title can't be blank.</span>");
             return mapping.findForward(FAILURE);
         }
         
